@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="description" content="DINA Lab — Distributed Infrastructure for NextGen Applications. Research in LLMs, Federated Learning, Serverless, Cloud and Edge Computing." />
+  <meta property="og:title" content="DINA LAB — Distributed Infrastructure for NextGen Applications" />
+  <meta property="og:description" content="Researching intelligent, distributed and next-generation application infrastructures." />
+  <meta property="og:type" content="website" />
+  <title>DINA LAB — Distributed Infrastructure for NextGen Applications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="DINA Lab home">
+      <span class="brand-mark">D</span>
+      <span class="brand-copy">
+        <strong>DINA LAB</strong>
+        <small>NextGen Distributed Systems</small>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#research">Research</a>
+      <a href="#people">People</a>
+      <a href="#activity">Activity</a>
+      <a href="#projects">Projects</a>
+    </nav>
+
+    <a id="orgLinkTop" class="button button-ghost" href="#" target="_blank" rel="noreferrer">
+      <i data-lucide="github"></i>
+      GitHub
+    </a>
+  </header>
+
+  <main>
+    <section class="hero section-shell">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse-dot"></span> DISTRIBUTED SYSTEMS • AI • CLOUD</div>
+          <h1>
+            Infrastructure for the
+            <span class="accent-word">next generation</span>
+            of applications.
+          </h1>
+          <p class="hero-description">
+            <strong>DINA LAB</strong> — Distributed Infrastructure for NextGen Applications — explores the intersection of
+            intelligent systems, federated AI, serverless software, cloud platforms and edge computing.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#research">Explore Research <i data-lucide="arrow-down-right"></i></a>
+            <a id="orgLinkHero" class="button button-soft" href="#" target="_blank" rel="noreferrer">Open GitHub <i data-lucide="external-link"></i></a>
+          </div>
+          <div class="micro-line">
+            <span>Led by <strong>Dr. Mehrdad Ashtiani</strong></span>
+            <span class="divider"></span>
+            <span>Research • Engineering • Open Source</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" data-delay="100">
+          <div class="orbital-card" id="orbitalCard">
+            <div class="orbital-grid"></div>
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit orbit-three"></div>
+            <div class="core">
+              <span>DINA</span>
+              <small>LAB</small>
+            </div>
+            <div class="float-chip chip-a">LLM</div>
+            <div class="float-chip chip-b">Edge</div>
+            <div class="float-chip chip-c">Cloud</div>
+            <div class="float-chip chip-d">FedLLM</div>
+            <div class="float-chip chip-e">FaaS</div>
+            <div class="signal signal-a"></div>
+            <div class="signal signal-b"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-ribbon reveal" id="activity">
+        <article class="stat-card">
+          <span class="stat-icon"><i data-lucide="git-commit-horizontal"></i></span>
+          <div><strong id="statCommits">—</strong><span>Total commits</span></div>
+          <em>org-wide</em>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon"><i data-lucide="boxes"></i></span>
+          <div><strong id="statRepos">—</strong><span>Projects</span></div>
+          <em>repositories</em>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon"><i data-lucide="radio-tower"></i></span>
+          <div><strong id="statActive">—</strong><span>Active contributors</span></div>
+          <em id="activeWindow">last 90 days</em>
+        </article>
+        <article class="stat-card stat-card-wide">
+          <span class="live-dot"></span>
+          <div><strong id="lastUpdated">Waiting for data</strong><span>GitHub activity snapshot</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="research section-shell" id="research">
+      <div class="section-heading reveal">
+        <div>
+          <span class="section-kicker">RESEARCH MATRIX</span>
+          <h2>Eight vectors. One distributed future.</h2>
+        </div>
+        <p>We study intelligent infrastructure from model training to runtime execution — across device, edge and cloud.</p>
+      </div>
+      <div class="research-grid" id="researchGrid"></div>
+    </section>
+
+    <section class="people section-shell" id="people">
+      <div class="section-heading reveal">
+        <div>
+          <span class="section-kicker">PEOPLE</span>
+          <h2>The minds behind DINA.</h2>
+        </div>
+        <p>Leadership, core researchers and contributors working across AI systems and distributed software.</p>
+      </div>
+
+      <div class="director-stage reveal" id="directorStage"></div>
+
+      <div class="subheading-row reveal">
+        <h3>Core Leads</h3>
+        <span>Gold-edged cards indicate lab-wide core leadership.</span>
+      </div>
+      <div class="lead-grid" id="leadGrid"></div>
+
+      <div class="subheading-row reveal">
+        <h3>Members</h3>
+        <span>Click a card for research focus and links.</span>
+      </div>
+      <div class="member-grid" id="memberGrid"></div>
+    </section>
+
+    <section class="activity-section section-shell">
+      <div class="section-heading reveal">
+        <div>
+          <span class="section-kicker">LIVE SIGNALS</span>
+          <h2>Who is building right now?</h2>
+        </div>
+        <p>Computed from organization repositories by the scheduled GitHub workflow.</p>
+      </div>
+      <div class="activity-layout">
+        <div class="panel reveal">
+          <div class="panel-head"><h3>Most active</h3><span id="activityRange">90 days</span></div>
+          <div class="contributors-list" id="contributorsList">
+            <div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div>
+          </div>
+        </div>
+        <div class="panel reveal" data-delay="100">
+          <div class="panel-head"><h3>Repository pulse</h3><span>recent activity</span></div>
+          <div class="repo-pulse" id="repoPulse">
+            <div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects section-shell" id="projects">
+      <div class="section-heading reveal">
+        <div>
+          <span class="section-kicker">PROJECTS</span>
+          <h2>From papers to production-grade systems.</h2>
+        </div>
+        <p>Public repositories are pulled from GitHub and ordered by recent activity.</p>
+      </div>
+      <div class="project-grid" id="projectGrid"></div>
+      <div class="center-action reveal">
+        <a id="orgLinkProjects" class="button button-primary" href="#" target="_blank" rel="noreferrer">View all repositories <i data-lucide="github"></i></a>
+      </div>
+    </section>
+
+    <section class="manifesto section-shell reveal">
+      <div class="manifesto-card">
+        <span class="section-kicker">DINA / 01</span>
+        <h2>Distributed by design.<br><span>Intelligent by default.</span></h2>
+        <p>We build the systems layer for applications that should learn, adapt and operate across heterogeneous infrastructure — efficiently, privately and at scale.</p>
+        <div class="manifesto-tags"><span>Open Research</span><span>Systems Thinking</span><span>NextGen Applications</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section-shell">
+    <div class="footer-brand"><span class="brand-mark">D</span><div><strong>DINA LAB</strong><small>Distributed Infrastructure for NextGen Applications</small></div></div>
+    <div class="footer-right"><span>Directed by Dr. Mehrdad Ashtiani</span><span>© <span id="year"></span> DINA LAB</span></div>
+  </footer>
+
+  <dialog class="member-modal" id="memberModal">
+    <button class="modal-close" id="modalClose" aria-label="Close"><i data-lucide="x"></i></button>
+    <div id="modalContent"></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Dr. Mehrdad Ashtiani",
+    "role": "Lab Director",
+    "leadership": "director",
+    "github": "",
+    "linkedin": "",
+    "photo": "",
+    "bio": "Director of DINA LAB, leading research at the intersection of distributed infrastructure, cloud-native systems and intelligent next-generation applications.",
+    "focus": ["Distributed Systems", "Cloud", "Edge Computing", "Serverless"]
+  },
+  {
+    "name": "Lead Member 1",
+    "role": "Core Lead",
+    "leadership": "lead",
+    "github": "",
+    "linkedin": "",
+    "photo": "",
+    "bio": "Core research lead coordinating lab-wide research and engineering activities.",
+    "focus": ["LLM", "Federated Learning", "FedLLM"]
+  },
+  {
+    "name": "Lead Member 2",
+    "role": "Core Lead",
+    "leadership": "lead",
+    "github": "",
+    "linkedin": "",
+    "photo": "",
+    "bio": "Core research lead coordinating systems, software and infrastructure projects across DINA LAB.",
+    "focus": ["Software", "FaaS", "Serverless"]
+  },
+  {
+    "name": "Member Name",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "",
+    "linkedin": "",
+    "photo": "",
+    "bio": "Add a short research bio here. GitHub profile information is refreshed by the stats workflow when a username is configured.",
+    "focus": ["Edge Computing", "Cloud"]
+  },
+  {
+    "name": "Member Name",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "",
+    "linkedin": "",
+    "photo": "",
+    "bio": "Add a short research bio here.",
+    "focus": ["LLM", "FedLLM"]
+  },
+  {
+    "name": "Member Name",
+    "role": "Research Engineer",
+    "leadership": "member",
+    "github": "",
+    "linkedin": "",
+    "photo": "",
+    "bio": "Add a short research bio here.",
+    "focus": ["Serverless", "FaaS", "Software"]
+  }
+]
