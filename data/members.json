@@ -125,8 +125,28 @@
     "leadership": "member",
     "github": "https://github.com/ErfanSamimi",
     "linkedin": "https://www.linkedin.com/in/erfan-samimi-3a620b208/",
-    "photo": "assets/ErfanSamimi.png",
+    "photo": "assets/ErfanSamimi.jpg",
     "bio": "Add a short research bio here.",
     "focus": ["Software", "LLM", "Distributed Systems"]
+  },
+  {
+    "name": "Mohammad hosein Pakdaman",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/mohammadhosein-p",
+    "linkedin": "https://www.linkedin.com/in/mohammad-hosein-pakdaman-54583a373/",
+    "photo": "assets/mohammadhosein-p.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Software", "Edge Computing", "Distributed Systems"]
+  },
+  {
+    "name": "Fatemeh Kerdegari",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/fatemehkerdegari80-ux",
+    "linkedin": "https://www.linkedin.com/in/fateme-k-54a5182aa/",
+    "photo": "assets/fatemehkerdegari.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["LLM", "FedLLM", "Distributed Systems"]
   }
 ]
