@@ -88,5 +88,25 @@
     "photo": "assets/AlimahdiBahrami.png",
     "bio": "Add a short research bio here.",
     "focus": ["Software", "LLM"]
+  },
+  {
+    "name": "Amirhossein Maleki",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/AHM-ID",
+    "linkedin": "https://www.linkedin.com/in/ahm-id/",
+    "photo": "assets/Amirhossein-Maleki.jpg",
+    "bio": "Add a short research bio here.",
+    "focus": ["Edge Computing", "Software", "Cloud", "Distributed Systems"]
+  },
+  {
+    "name": "Asma Rashidian",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/Asma-Rashidian",
+    "linkedin": "https://www.linkedin.com/in/asma-rashidian/",
+    "photo": "assets/Asma-Rashidian.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Edge Computing", "LLM"]
   }
 ]
