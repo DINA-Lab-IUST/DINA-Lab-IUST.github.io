@@ -59,6 +59,16 @@ async function listRepos() {
   return paginate(`/orgs/${encodeURIComponent(ORG)}/repos?type=all&sort=updated&direction=desc`);
 }
 
+
+async function readPreviousStats() {
+  try {
+    const previous = JSON.parse(await fs.readFile("data/github-stats.json", "utf8"));
+    return previous && typeof previous === "object" ? previous : null;
+  } catch {
+    return null;
+  }
+}
+
 async function readMembers() {
   try {
     return JSON.parse(await fs.readFile("data/members.json", "utf8"));
@@ -119,6 +129,7 @@ function commitsInsideWindow(weeks = [], cutoffMs) {
 async function main() {
   console.log(`Collecting privacy-preserving aggregate GitHub statistics for ${ORG} ...`);
 
+  const previousStats = await readPreviousStats();
   const allRepos = await listRepos();
   const repos = allRepos.filter(repo =>
     !repo.archived &&
@@ -169,6 +180,18 @@ async function main() {
   }
 
   const activeContributors = [...activity.values()].sort((a, b) => b.commits - a.commits);
+
+  // GitHub's repository-statistics endpoints can temporarily return 202/empty data while
+  // their cache is being rebuilt. Never replace a known-good public snapshot with zeros.
+  const previousCommitTotal = Number(previousStats?.totalCommits || 0);
+  const previousRepoCount = Number(previousStats?.repoCount || 0);
+  if (repos.length === 0 && previousRepoCount > 0) {
+    throw new Error("GitHub returned zero repositories; refusing to overwrite the last good statistics snapshot.");
+  }
+  if (totalCommits === 0 && previousCommitTotal > 0) {
+    console.warn("Contributor statistics were temporarily empty; preserving the last known commit total.");
+    totalCommits = previousCommitTotal;
+  }
 
   const output = {
     organization: ORG,

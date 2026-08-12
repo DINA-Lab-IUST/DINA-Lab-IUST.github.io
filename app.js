@@ -79,7 +79,10 @@ function renderResearch() {
 
 function imageMarkup(member, className = "member-avatar") {
   const src = memberPhoto(member);
-  return `<div class="${className}"><span class="portrait-fallback" aria-hidden="true"><i data-lucide="user-round"></i></span>${src ? `<img src="${safe(src)}" alt="${safe(member.name)}" onerror="this.style.display='none'">` : ""}</div>`;
+  if (src) {
+    return `<div class="${className}"><img src="${safe(src)}" alt="${safe(member.name)}" onerror="this.remove(); this.parentElement.classList.add('photo-missing')"></div>`;
+  }
+  return `<div class="${className} photo-missing"><span class="portrait-fallback" aria-hidden="true"></span></div>`;
 }
 
 function linkButtons(member, mini = false) {
@@ -205,9 +208,8 @@ function workTeamMarkup(memberRefs = [], compact = false) {
       ${visible.map(member => {
         const index = members.indexOf(member);
         const src = memberPhoto(member);
-        return `<button class="stack-avatar" type="button" data-member-index="${index}" title="${safe(member.name)}" aria-label="Open ${safe(member.name)} profile">
-          <span class="stack-avatar-fallback"><i data-lucide="user-round"></i></span>
-          ${src ? `<img src="${safe(src)}" alt="" onerror="this.style.display='none'">` : ""}
+        return `<button class="stack-avatar${src ? "" : " photo-missing"}" type="button" data-member-index="${index}" title="${safe(member.name)}" aria-label="Open ${safe(member.name)} profile">
+          ${src ? `<img src="${safe(src)}" alt="" onerror="this.remove(); this.parentElement.classList.add('photo-missing')">` : `<span class="stack-avatar-fallback" aria-hidden="true"></span>`}
         </button>`;
       }).join("")}
       ${extra ? `<span class="stack-avatar stack-extra">+${extra}</span>` : ""}
@@ -293,7 +295,9 @@ function renderStats(stats) {
   $("statRepos").textContent = formatNumber(stats.repoCount);
   $("statCoffee").textContent = formatNumber(coffees);
   $("coffeeProgress").textContent = commits ? `${toNextCoffee} commits to next ☕` : `1 coffee / ${coffeeRate} commits`;
-  $("lastUpdated").textContent = formatDate(stats.generatedAt);
+  $("lastUpdated").textContent = stats.snapshot === "last-known-good"
+    ? "Last known GitHub snapshot"
+    : formatDate(stats.generatedAt);
 }
 
 async function getJson(url) {
@@ -302,15 +306,53 @@ async function getJson(url) {
   return res.json();
 }
 
+function statsAreUseful(stats) {
+  return stats && (Number(stats.totalCommits || 0) > 0 || Number(stats.repoCount || 0) > 0);
+}
+
+function readCachedStats() {
+  try {
+    const cached = JSON.parse(localStorage.getItem("dina:last-good-github-stats") || "null");
+    return statsAreUseful(cached) ? cached : null;
+  } catch {
+    return null;
+  }
+}
+
+function cacheStats(stats) {
+  if (!statsAreUseful(stats)) return;
+  try { localStorage.setItem("dina:last-good-github-stats", JSON.stringify(stats)); }
+  catch { /* localStorage may be unavailable; live data still works. */ }
+}
+
+async function loadGithubStats() {
+  const cached = readCachedStats();
+  try {
+    const fresh = await getJson(CONFIG.statsUrl);
+    if (statsAreUseful(fresh)) {
+      cacheStats(fresh);
+      return fresh;
+    }
+    if (cached) {
+      console.warn("[DINA] GitHub stats returned an empty snapshot; keeping the last good snapshot.");
+      return cached;
+    }
+    return fresh;
+  } catch (error) {
+    console.error(error);
+    if (cached) {
+      console.warn("[DINA] GitHub stats could not be loaded; using the last good browser snapshot.");
+      return cached;
+    }
+    return { organization: "", repoCount: 0, totalCommits: 0, activeContributors: [], repositories: [], profiles: {}, windowDays: 90 };
+  }
+}
+
 async function loadData() {
   try { members = await getJson(CONFIG.membersUrl); }
   catch (e) { console.error(e); members = []; }
 
-  try { githubStats = await getJson(CONFIG.statsUrl); }
-  catch (e) {
-    console.error(e);
-    githubStats = { organization: "", repoCount: 0, totalCommits: 0, activeContributors: [], repositories: [], profiles: {}, windowDays: 90 };
-  }
+  githubStats = await loadGithubStats();
 
   try { labWork = await getJson(CONFIG.workUrl); }
   catch (e) {

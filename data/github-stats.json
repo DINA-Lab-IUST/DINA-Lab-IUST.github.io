@@ -1,10 +1,11 @@
 {
   "organization": "YOUR_GITHUB_ORG",
   "generatedAt": null,
-  "windowDays": 90,
-  "repoCount": 0,
-  "totalCommits": 0,
+  "repoCount": 3,
+  "totalCommits": 714,
   "activeContributors": [],
   "repositories": [],
-  "profiles": {}
+  "profiles": {},
+  "windowDays": 90,
+  "snapshot": "last-known-good"
 }

@@ -1,37 +1,56 @@
 {
   "currentWork": [
     {
-      "title": "FedLLM Systems",
+      "title": "Fed MAB LoRA",
       "status": "In progress",
-      "description": "A short description of what this team is actively building or investigating right now.",
+      "description": "We propose MAB-RAFD, a personalized federated framework...",
       "tags": ["FedLLM", "Federated Learning", "LLM"],
       "members": ["Ali Ahmadi", "Hessam Koucheki"]
     },
     {
-      "title": "Serverless + Edge Runtime",
+      "title": "Adaptive Code Smell Refactoring",
       "status": "Research",
-      "description": "Use this card for another active research thread. Edit everything in data/lab-work.json.",
-      "tags": ["Serverless", "FaaS", "Edge Computing"],
-      "members": ["Hessam Koucheki"]
+      "description": "We propose CARER...",
+      "tags": ["LLM", "Software", "Refactoring"],
+      "members": ["Ali Ahmadi", "Mobina Hoshiaripour"]
+    },
+    {
+      "title": "Fed + LoRA",
+      "status": "Research",
+      "description": "We propose...",
+      "tags": ["FedLLM", "Federated Learning", "LLM"],
+      "members": ["Ali Ahmadi", "Fatemeh Kerdegari"]
+    },
+    {
+      "title": "Auto-Scaling",
+      "status": "Research",
+      "description": "We propose...",
+      "tags": ["Auto-Scaling", "Kubernetes"],
+      "members": ["Amirhossein Maleki"]
+    },
+    {
+      "title": "Auto-Scaling",
+      "status": "Research",
+      "description": "We propose...",
+      "tags": ["Auto-Scaling", "Kubernetes"],
+      "members": ["Ali Ahmadi", "Mohammad hosein Pakdaman"]
+    },
+    {
+      "title": "Adaptive Client Selection in FL",
+      "status": "Research",
+      "description": "We propose...",
+      "tags": ["Federated Learning", "Clien Selection"],
+      "members": ["Ali Ahmadi"]
     }
   ],
   "projects": [
     {
-      "title": "Project Title",
+      "title": "Edge Log",
       "type": "Research Project",
-      "status": "Active",
-      "description": "Write a concise project description here: the problem, the system being built, or the main research objective.",
-      "tags": ["LLM", "Cloud", "Systems"],
+      "status": "Under Review",
+      "description": "A framework for log analysis at the edge",
+      "tags": ["LLM", "Software", "Edge Computing"],
       "members": ["Ali Ahmadi", "Hessam Koucheki"],
-      "links": []
-    },
-    {
-      "title": "Another Project",
-      "type": "Systems Research",
-      "status": "Exploring",
-      "description": "This is another manually curated project card. Private repository names never need to be exposed here.",
-      "tags": ["Edge Computing", "FaaS"],
-      "members": ["Hessam Koucheki"],
       "links": []
     }
   ]
