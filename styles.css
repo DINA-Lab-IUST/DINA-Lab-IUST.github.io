@@ -83,3 +83,23 @@ button,input{font:inherit}
 
 @media(max-width:980px){.now-building-grid{grid-template-columns:1fr}.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.now-card{min-height:330px;padding:22px}.now-card-main{margin:38px 0 28px}.project-grid{grid-template-columns:1fr}.project-card.curated-project{min-height:350px}.team-copy strong{max-width:180px}.stack-avatar{width:43px;height:43px;border-radius:13px}}
+
+/* FINAL PHOTO OVERLAY FIX — member photos must never contain initials/user icons. */
+.portrait-fallback,
+.stack-avatar-fallback,
+.portrait > svg[data-lucide="user-round"],
+.member-avatar > svg[data-lucide="user-round"],
+.stack-avatar > svg[data-lucide="user-round"],
+.portrait .lucide-user-round,
+.member-avatar .lucide-user-round,
+.stack-avatar .lucide-user-round {
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+.portrait.photo-missing,
+.member-avatar.photo-missing,
+.stack-avatar.photo-missing {
+  background:linear-gradient(145deg,#152a3e,#0b1725);
+}

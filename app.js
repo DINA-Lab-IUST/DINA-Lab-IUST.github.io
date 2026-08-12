@@ -82,7 +82,14 @@ function imageMarkup(member, className = "member-avatar") {
   if (src) {
     return `<div class="${className}"><img src="${safe(src)}" alt="${safe(member.name)}" onerror="this.remove(); this.parentElement.classList.add('photo-missing')"></div>`;
   }
-  return `<div class="${className} photo-missing"><span class="portrait-fallback" aria-hidden="true"></span></div>`;
+  // Intentionally render NO initials, icon, SVG or overlay when a photo is missing.
+  return `<div class="${className} photo-missing" aria-label="${safe(member.name)}"></div>`;
+}
+
+
+function removeLegacyPhotoOverlays() {
+  document.querySelectorAll('.portrait-fallback, .stack-avatar-fallback').forEach(node => node.remove());
+  document.querySelectorAll('.portrait svg[data-lucide="user-round"], .member-avatar svg[data-lucide="user-round"], .stack-avatar svg[data-lucide="user-round"]').forEach(node => node.remove());
 }
 
 function linkButtons(member, mini = false) {
@@ -209,7 +216,7 @@ function workTeamMarkup(memberRefs = [], compact = false) {
         const index = members.indexOf(member);
         const src = memberPhoto(member);
         return `<button class="stack-avatar${src ? "" : " photo-missing"}" type="button" data-member-index="${index}" title="${safe(member.name)}" aria-label="Open ${safe(member.name)} profile">
-          ${src ? `<img src="${safe(src)}" alt="" onerror="this.remove(); this.parentElement.classList.add('photo-missing')">` : `<span class="stack-avatar-fallback" aria-hidden="true"></span>`}
+          ${src ? `<img src="${safe(src)}" alt="" onerror="this.remove(); this.parentElement.classList.add('photo-missing')">` : ``}
         </button>`;
       }).join("")}
       ${extra ? `<span class="stack-avatar stack-extra">+${extra}</span>` : ""}
@@ -405,4 +412,12 @@ setupMotion();
 $("year").textContent = new Date().getFullYear();
 $("modalClose").addEventListener("click", () => $("memberModal").close());
 $("memberModal").addEventListener("click", e => { if (e.target === $("memberModal")) $("memberModal").close(); });
-window.addEventListener("DOMContentLoaded", () => { window.lucide?.createIcons(); activateReveal(); loadData(); });
+window.addEventListener("DOMContentLoaded", () => {
+  window.lucide?.createIcons();
+  removeLegacyPhotoOverlays();
+  activateReveal();
+  loadData().finally(() => {
+    removeLegacyPhotoOverlays();
+    requestAnimationFrame(removeLegacyPhotoOverlays);
+  });
+});
