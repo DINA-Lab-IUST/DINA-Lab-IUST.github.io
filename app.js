@@ -1,5 +1,5 @@
 const CONFIG = {
-  githubOrg: "DINA-Lab-IUST",
+  githubOrg: "YOUR_GITHUB_ORG",
   statsUrl: "data/github-stats.json",
   membersUrl: "data/members.json",
   maxProjects: 6,
@@ -26,10 +26,6 @@ const safe = (value = "") => String(value)
   .replaceAll(">", "&gt;")
   .replaceAll('"', "&quot;")
   .replaceAll("'", "&#039;");
-
-function initials(name = "") {
-  return name.split(/\s+/).filter(Boolean).slice(0, 2).map(s => s[0]).join("").toUpperCase() || "DL";
-}
 
 function formatNumber(n) {
   return new Intl.NumberFormat("en", { notation: n > 9999 ? "compact" : "standard", maximumFractionDigits: 1 }).format(n || 0);
@@ -63,8 +59,7 @@ function renderResearch() {
 function imageMarkup(member, className = "member-avatar") {
   const p = profileFor(member);
   const src = p.avatar_url || member.photo || "";
-  const init = initials(member.name);
-  return `<div class="${className}"><span class="portrait-fallback">${safe(init)}</span>${src ? `<img src="${safe(src)}" alt="${safe(member.name)}" onerror="this.style.display='none'">` : ""}</div>`;
+  return `<div class="${className}"><span class="portrait-fallback" aria-hidden="true"><i data-lucide="user-round"></i></span>${src ? `<img src="${safe(src)}" alt="${safe(member.name)}" onerror="this.style.display='none'">` : ""}</div>`;
 }
 
 function linkButtons(member, mini = false) {
