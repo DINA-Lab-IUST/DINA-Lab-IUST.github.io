@@ -4,30 +4,30 @@
     "role": "Lab Director",
     "leadership": "director",
     "github": "",
-    "linkedin": "",
-    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/mehrdad-ashtiani-09170577/",
+    "photo": "assets/mehrdad-ashtiani.jpg",
     "bio": "Director of DINA LAB, leading research at the intersection of distributed infrastructure, cloud-native systems and intelligent next-generation applications.",
     "focus": ["Distributed Systems", "Cloud", "Edge Computing", "Serverless"]
   },
   {
-    "name": "Lead Member 1",
+    "name": "Ali Ahmadi",
     "role": "Core Lead",
     "leadership": "lead",
-    "github": "",
-    "linkedin": "",
-    "photo": "",
+    "github": "https://github.com/AliAhmadi-Software",
+    "linkedin": "https://www.linkedin.com/in/ali-ahmadi-79ah/",
+    "photo": "assets/ali-ahmadi.jpg",
     "bio": "Core research lead coordinating lab-wide research and engineering activities.",
-    "focus": ["LLM", "Federated Learning", "FedLLM"]
+    "focus": ["LLM", "Federated Learning", "FedLLM", "Software"]
   },
   {
-    "name": "Lead Member 2",
+    "name": "Hessam Koucheki",
     "role": "Core Lead",
     "leadership": "lead",
-    "github": "",
-    "linkedin": "",
-    "photo": "",
-    "bio": "Core research lead coordinating systems, software and infrastructure projects across DINA LAB.",
-    "focus": ["Software", "FaaS", "Serverless"]
+    "github": "https://github.com/hessam-kk",
+    "linkedin": "https://www.linkedin.com/in/hessam-koucheki-8818b8207/",
+    "photo": "assets/hessam.jpg",
+    "bio": "Core research lead coordinating lab-wide research and engineering activities.",
+    "focus": ["LLM", "Federated Learning", "FedLLM"]
   },
   {
     "name": "Member Name",

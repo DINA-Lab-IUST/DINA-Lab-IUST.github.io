@@ -1,5 +1,5 @@
 const CONFIG = {
-  githubOrg: "YOUR_GITHUB_ORG",
+  githubOrg: "DINA-Lab-IUST",
   statsUrl: "data/github-stats.json",
   membersUrl: "data/members.json",
   maxProjects: 6,
