@@ -17,7 +17,7 @@
     "linkedin": "https://www.linkedin.com/in/ali-ahmadi-79ah/",
     "photo": "assets/ali-ahmadi.jpg",
     "bio": "Core research lead coordinating lab-wide research and engineering activities.",
-    "focus": ["LLM", "Federated Learning", "FedLLM", "Software"]
+    "focus": ["LLM", "Federated Learning", "FedLLM", "Software", "Distributed Systems", "Edge Computing"]
   },
   {
     "name": "Hessam Koucheki",
@@ -27,36 +27,66 @@
     "linkedin": "https://www.linkedin.com/in/hessam-koucheki-8818b8207/",
     "photo": "assets/hessam.jpg",
     "bio": "Core research lead coordinating lab-wide research and engineering activities.",
-    "focus": ["LLM", "Federated Learning", "FedLLM"]
+    "focus": ["LLM", "Federated Learning", "FedLLM", "Software", "Distributed Systems", "Edge Computing"]
   },
   {
-    "name": "Member Name",
+    "name": "Ahoora Amini",
     "role": "Researcher",
     "leadership": "member",
-    "github": "",
-    "linkedin": "",
-    "photo": "",
-    "bio": "Add a short research bio here. GitHub profile information is refreshed by the stats workflow when a username is configured.",
-    "focus": ["Edge Computing", "Cloud"]
+    "github": "https://github.com/Ahooraa",
+    "linkedin": "https://www.linkedin.com/in/ahoora-amini/",
+    "photo": "assets/ahoora-amini.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Edge Computing", "FaaS", "Serverless"]
   },
   {
-    "name": "Member Name",
+    "name": "Abolfazl Arshia",
     "role": "Researcher",
     "leadership": "member",
-    "github": "",
-    "linkedin": "",
-    "photo": "",
+    "github": "https://github.com/MrSEKIRO",
+    "linkedin": "https://www.linkedin.com/in/abolfazl-arshia/",
+    "photo": "assets/Abolfazl-Arshia.png",
     "bio": "Add a short research bio here.",
-    "focus": ["LLM", "FedLLM"]
+    "focus": ["Edge Computing", "FaaS", "Serverless"]
   },
   {
-    "name": "Member Name",
-    "role": "Research Engineer",
+    "name": "Amirhossein Amin Moghaddam",
+    "role": "Researcher",
     "leadership": "member",
-    "github": "",
-    "linkedin": "",
-    "photo": "",
+    "github": "https://github.com/Aminam78",
+    "linkedin": "https://www.linkedin.com/in/amirhossein-amin-moghaddam/",
+    "photo": "assets/Amirhossein-Amin-Moghaddam.png",
     "bio": "Add a short research bio here.",
-    "focus": ["Serverless", "FaaS", "Software"]
+    "focus": ["LLM", "Edge Computing", "Distributed Systems"]
+  },
+  {
+    "name": "Mobin Taherzadeh",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/Mobin-Thz",
+    "linkedin": "https://www.linkedin.com/in/mobin-taherzadeh-a7ba801bb/",
+    "photo": "assets/Mobin-Thz.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Software", "LLM"]
+  },
+  {
+    "name": "Sina Moradian",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/Sinac0de",
+    "linkedin": "https://www.linkedin.com/in/sina-moradian-198836223/",
+    "photo": "assets/Sina-Moradian.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Edge Computing", "Software"]
+  },
+  {
+    "name": "Alimahdi Bahrami",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/alimahdibahrami",
+    "linkedin": "https://www.linkedin.com/in/alimahdibahrami/",
+    "photo": "assets/AlimahdiBahrami.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Software", "LLM"]
   }
 ]
