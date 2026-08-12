@@ -108,5 +108,25 @@
     "photo": "assets/Asma-Rashidian.png",
     "bio": "Add a short research bio here.",
     "focus": ["Edge Computing", "LLM"]
+  },
+  {
+    "name": "Mobina Hoshiaripour",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/MobinaHp",
+    "linkedin": "https://www.linkedin.com/in/mobina-hoshiaripour/",
+    "photo": "assets/Mobina-Hoshiaripour.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Software", "LLM"]
+  },
+  {
+    "name": "Erfan Samimi",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com/ErfanSamimi",
+    "linkedin": "https://www.linkedin.com/in/erfan-samimi-3a620b208/",
+    "photo": "assets/ErfanSamimi.png",
+    "bio": "Add a short research bio here.",
+    "focus": ["Software", "LLM", "Distributed Systems"]
   }
 ]
