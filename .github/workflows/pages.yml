@@ -38,7 +38,8 @@ jobs:
           GITHUB_ORG: ${{ vars.DINA_GITHUB_ORG }}
           DINA_GITHUB_TOKEN: ${{ secrets.DINA_GITHUB_TOKEN }}
           ACTIVITY_WINDOW_DAYS: 90
-          MAX_COMMIT_PAGES_PER_REPO: 20
+          # Optional: comma-separated repositories to omit from lab metrics.
+          EXCLUDE_REPOS: ${{ vars.DINA_EXCLUDE_REPOS }}
         run: node scripts/update-github-stats.mjs
 
       - name: Configure Pages

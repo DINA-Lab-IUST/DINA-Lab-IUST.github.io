@@ -133,39 +133,8 @@ function openMemberModal(member) {
   window.lucide?.createIcons();
 }
 
-function renderProjects(repos = []) {
-  $("projectGrid").innerHTML = repos.slice(0, CONFIG.maxProjects).map(r => `
-    <a class="project-card reveal" href="${safe(r.html_url)}" target="_blank" rel="noreferrer">
-      <div class="project-card-head"><h3>${safe(r.name)}</h3><span class="language">${safe(r.language || "Research")}</span></div>
-      <p>${safe(r.description || "DINA LAB research and engineering project.")}</p>
-      <div class="project-stats"><span><i data-lucide="star"></i>${formatNumber(r.stargazers_count)}</span><span><i data-lucide="git-fork"></i>${formatNumber(r.forks_count)}</span><span><i data-lucide="clock-3"></i>${safe(r.updated_relative || "recently")}</span></div>
-    </a>`).join("") || `<div class="panel reveal">Projects will be loaded after the first stats workflow run.</div>`;
-}
-
-async function refreshLiveOrgPulse() {
-  const org = CONFIG.githubOrg;
-  if (!org || org === "YOUR_GITHUB_ORG") return;
-  try {
-    const [orgRes, repoRes] = await Promise.all([
-      fetch(`https://api.github.com/orgs/${encodeURIComponent(org)}`),
-      fetch(`https://api.github.com/orgs/${encodeURIComponent(org)}/repos?type=public&sort=updated&direction=desc&per_page=${CONFIG.maxProjects}`),
-    ]);
-    if (orgRes.ok) {
-      const orgData = await orgRes.json();
-      if (Number.isFinite(orgData.public_repos)) $("statRepos").textContent = formatNumber(orgData.public_repos);
-    }
-    if (repoRes.ok) {
-      const liveRepos = (await repoRes.json()).filter(r => !r.archived && !r.fork).map(r => ({
-        ...r,
-        updated_relative: formatDate(r.updated_at).replace("Updated ", ""),
-      }));
-      if (liveRepos.length) renderProjects(liveRepos);
-    }
-    window.lucide?.createIcons();
-    activateReveal();
-  } catch (error) {
-    console.debug("Live GitHub pulse unavailable; using scheduled snapshot.", error);
-  }
+function renderProjects() {
+  $("projectGrid").innerHTML = `<div class="panel reveal">Research repositories are private. This public site exposes aggregate activity metrics only; repository names, links and source contents are not published.</div>`;
 }
 
 function renderStats(stats) {
@@ -185,15 +154,9 @@ function renderStats(stats) {
       <span class="contribution-count">${formatNumber(c.commits)} commits</span>
     </a>`).join("") : `<p style="color:#74808d;font-size:11px;line-height:1.7">No activity data yet. Run the GitHub Actions workflow after setting the organization name.</p>`;
 
-  const repos = (stats.repositories || []).slice(0, 7);
-  $("repoPulse").innerHTML = repos.length ? repos.map(r => `
-    <a class="repo-row" href="${safe(r.html_url)}" target="_blank" rel="noreferrer">
-      <span class="rank"><i data-lucide="git-branch"></i></span>
-      <div class="repo-main"><strong>${safe(r.name)}</strong><span>${safe(r.description || "No description")}</span></div>
-      <div class="repo-meta"><span><i data-lucide="star"></i>${formatNumber(r.stargazers_count)}</span><span>${safe(r.language || "—")}</span></div>
-    </a>`).join("") : `<p style="color:#74808d;font-size:11px">Repository activity will appear here.</p>`;
+  $("repoPulse").innerHTML = `<p style="color:#74808d;font-size:11px;line-height:1.8">Private repository details are intentionally hidden. Only aggregate repository count, commit activity and configured-member activity are published.</p>`;
 
-  renderProjects(stats.repositories || []);
+  renderProjects();
 }
 
 async function getJson(url) {
@@ -209,7 +172,6 @@ async function loadData() {
   catch (e) { console.error(e); githubStats = { repoCount: 0, totalCommits: 0, activeContributors: [], repositories: [], profiles: {}, windowDays: 90 }; }
   renderPeople();
   renderStats(githubStats);
-  refreshLiveOrgPulse();
   window.lucide?.createIcons();
   activateReveal();
 }
