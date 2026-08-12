@@ -1,0 +1,38 @@
+{
+  "currentWork": [
+    {
+      "title": "FedLLM Systems",
+      "status": "In progress",
+      "description": "A short description of what this team is actively building or investigating right now.",
+      "tags": ["FedLLM", "Federated Learning", "LLM"],
+      "members": ["Ali Ahmadi", "Hessam Koucheki"]
+    },
+    {
+      "title": "Serverless + Edge Runtime",
+      "status": "Research",
+      "description": "Use this card for another active research thread. Edit everything in data/lab-work.json.",
+      "tags": ["Serverless", "FaaS", "Edge Computing"],
+      "members": ["Hessam Koucheki"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Project Title",
+      "type": "Research Project",
+      "status": "Active",
+      "description": "Write a concise project description here: the problem, the system being built, or the main research objective.",
+      "tags": ["LLM", "Cloud", "Systems"],
+      "members": ["Ali Ahmadi", "Hessam Koucheki"],
+      "links": []
+    },
+    {
+      "title": "Another Project",
+      "type": "Systems Research",
+      "status": "Exploring",
+      "description": "This is another manually curated project card. Private repository names never need to be exposed here.",
+      "tags": ["Edge Computing", "FaaS"],
+      "members": ["Hessam Koucheki"],
+      "links": []
+    }
+  ]
+}

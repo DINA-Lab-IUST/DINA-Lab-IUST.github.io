@@ -1,8 +1,11 @@
 const CONFIG = {
+  // The stats workflow writes the real organization name into github-stats.json.
+  // Keep this as a fallback only, or replace it with your GitHub organization slug.
   githubOrg: "YOUR_GITHUB_ORG",
   statsUrl: "data/github-stats.json",
   membersUrl: "data/members.json",
-  maxProjects: 6,
+  workUrl: "data/lab-work.json",
+  commitsPerCoffee: 20,
 };
 
 const RESEARCH = [
@@ -18,6 +21,7 @@ const RESEARCH = [
 
 let members = [];
 let githubStats = null;
+let labWork = { currentWork: [], projects: [] };
 
 const $ = (id) => document.getElementById(id);
 const safe = (value = "") => String(value)
@@ -27,6 +31,15 @@ const safe = (value = "") => String(value)
   .replaceAll('"', "&quot;")
   .replaceAll("'", "&#039;");
 
+function safeUrl(value = "") {
+  try {
+    const url = new URL(String(value), window.location.href);
+    return ["http:", "https:"].includes(url.protocol) ? safe(url.href) : "";
+  } catch {
+    return "";
+  }
+}
+
 function formatNumber(n) {
   return new Intl.NumberFormat("en", { notation: n > 9999 ? "compact" : "standard", maximumFractionDigits: 1 }).format(n || 0);
 }
@@ -35,11 +48,19 @@ function formatDate(iso) {
   if (!iso) return "Run the stats workflow to populate live data";
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return "Unknown";
-  return `Updated ${new Intl.RelativeTimeFormat("en", { numeric: "auto" }).format(Math.round((d - Date.now()) / 3600000), "hour")}`;
+  const diffHours = Math.round((d - Date.now()) / 3600000);
+  return `Updated ${new Intl.RelativeTimeFormat("en", { numeric: "auto" }).format(diffHours, "hour")}`;
 }
 
 function profileFor(member) {
-  return member.github && githubStats?.profiles?.[member.github] ? githubStats.profiles[member.github] : {};
+  if (!member?.github) return {};
+  const profiles = githubStats?.profiles || {};
+  return profiles[member.github] || profiles[Object.keys(profiles).find(key => key.toLowerCase() === member.github.toLowerCase())] || {};
+}
+
+function memberPhoto(member) {
+  const profile = profileFor(member);
+  return member?.photo || profile.avatar_url || "";
 }
 
 function renderResearch() {
@@ -57,8 +78,7 @@ function renderResearch() {
 }
 
 function imageMarkup(member, className = "member-avatar") {
-  const p = profileFor(member);
-  const src = p.avatar_url || member.photo || "";
+  const src = memberPhoto(member);
   return `<div class="${className}"><span class="portrait-fallback" aria-hidden="true"><i data-lucide="user-round"></i></span>${src ? `<img src="${safe(src)}" alt="${safe(member.name)}" onerror="this.style.display='none'">` : ""}</div>`;
 }
 
@@ -106,6 +126,16 @@ function memberCard(member, isLead = false, index = 0) {
     </article>`;
 }
 
+function bindMemberCards() {
+  document.querySelectorAll("[data-member-index]").forEach(card => {
+    if (card.dataset.bound === "1") return;
+    card.dataset.bound = "1";
+    const open = () => openMemberModal(members[Number(card.dataset.memberIndex)]);
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") open(); });
+  });
+}
+
 function renderPeople() {
   const director = members.find(m => m.leadership === "director");
   const leads = members.filter(m => m.leadership === "lead");
@@ -113,14 +143,11 @@ function renderPeople() {
   if (director) renderDirector(director);
   $("leadGrid").innerHTML = leads.map(m => memberCard(m, true, members.indexOf(m))).join("") || `<div class="panel">Add lead members in data/members.json</div>`;
   $("memberGrid").innerHTML = regular.map(m => memberCard(m, false, members.indexOf(m))).join("") || `<div class="panel">Add members in data/members.json</div>`;
-  document.querySelectorAll("[data-member-index]").forEach(card => {
-    const open = () => openMemberModal(members[Number(card.dataset.memberIndex)]);
-    card.addEventListener("click", open);
-    card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") open(); });
-  });
+  bindMemberCards();
 }
 
 function openMemberModal(member) {
+  if (!member) return;
   const p = profileFor(member);
   const body = member.bio || p.bio || "No bio yet.";
   $("modalContent").innerHTML = `<div class="modal-body">
@@ -133,30 +160,140 @@ function openMemberModal(member) {
   window.lucide?.createIcons();
 }
 
+function normalizeMemberRef(value) {
+  return String(value || "").trim().toLocaleLowerCase();
+}
+
+function resolveMember(ref) {
+  const wanted = normalizeMemberRef(ref);
+  if (!wanted) return null;
+  return members.find(member =>
+    normalizeMemberRef(member.name) === wanted ||
+    normalizeMemberRef(member.github) === wanted
+  ) || null;
+}
+
+function resolveTeam(memberRefs = []) {
+  const found = [];
+  const seen = new Set();
+  memberRefs.forEach(ref => {
+    const member = resolveMember(ref);
+    if (!member) {
+      console.warn(`[DINA] Member "${ref}" from data/lab-work.json was not found in data/members.json.`);
+      return;
+    }
+    const key = normalizeMemberRef(member.github || member.name);
+    if (!seen.has(key)) {
+      seen.add(key);
+      found.push(member);
+    }
+  });
+  return found;
+}
+
+function workTeamMarkup(memberRefs = [], compact = false) {
+  const team = resolveTeam(memberRefs);
+  if (!team.length) {
+    return `<div class="work-team-empty"><i data-lucide="users"></i><span>Add member names in lab-work.json</span></div>`;
+  }
+
+  const visible = team.slice(0, compact ? 5 : 7);
+  const extra = Math.max(0, team.length - visible.length);
+  const names = team.map(member => member.name).join(", ");
+  return `<div class="work-team">
+    <div class="avatar-stack" aria-label="Team: ${safe(names)}">
+      ${visible.map(member => {
+        const index = members.indexOf(member);
+        const src = memberPhoto(member);
+        return `<button class="stack-avatar" type="button" data-member-index="${index}" title="${safe(member.name)}" aria-label="Open ${safe(member.name)} profile">
+          <span class="stack-avatar-fallback"><i data-lucide="user-round"></i></span>
+          ${src ? `<img src="${safe(src)}" alt="" onerror="this.style.display='none'">` : ""}
+        </button>`;
+      }).join("")}
+      ${extra ? `<span class="stack-avatar stack-extra">+${extra}</span>` : ""}
+    </div>
+    <div class="team-copy"><span>${team.length === 1 ? "Researcher" : `${team.length} researchers`}</span><strong>${safe(team.slice(0, 3).map(m => m.name).join(" · "))}${team.length > 3 ? ` · +${team.length - 3}` : ""}</strong></div>
+  </div>`;
+}
+
+function tagsMarkup(tags = [], limit = 4) {
+  return `<div class="work-tags">${tags.slice(0, limit).map(tag => `<span>${safe(tag)}</span>`).join("")}</div>`;
+}
+
+function projectLinksMarkup(links = []) {
+  const valid = links.map(link => ({ ...link, safeHref: safeUrl(link.url) })).filter(link => link.safeHref);
+  if (!valid.length) return "";
+  return `<div class="project-links">${valid.map(link => `<a href="${link.safeHref}" target="_blank" rel="noreferrer"><i data-lucide="${safe(link.icon || "external-link")}"></i>${safe(link.label || "Open")}</a>`).join("")}</div>`;
+}
+
+function renderNowBuilding() {
+  const items = Array.isArray(labWork.currentWork) ? labWork.currentWork : [];
+  $("nowBuildingGrid").innerHTML = items.length ? items.map((item, i) => `
+    <article class="now-card reveal" style="transition-delay:${Math.min(i * 55, 220)}ms">
+      <div class="now-card-orbit" aria-hidden="true"></div>
+      <div class="work-card-top">
+        <span class="work-status"><span></span>${safe(item.status || "Active")}</span>
+        <span class="work-index">NOW / ${String(i + 1).padStart(2, "0")}</span>
+      </div>
+      <div class="now-card-main">
+        <h3>${safe(item.title || "Untitled research thread")}</h3>
+        <p>${safe(item.description || "Add a short description in data/lab-work.json.")}</p>
+        ${tagsMarkup(item.tags || [], 5)}
+      </div>
+      ${workTeamMarkup(item.members || [])}
+    </article>`).join("") : `
+      <article class="empty-work-card reveal">
+        <i data-lucide="sparkles"></i>
+        <div><strong>Add what DINA is building now</strong><span>Edit <code>data/lab-work.json</code> and add entries under <code>currentWork</code>.</span></div>
+      </article>`;
+}
+
 function renderProjects() {
-  $("projectGrid").innerHTML = `<div class="panel reveal">Research repositories are private. This public site exposes aggregate activity metrics only; repository names, links and source contents are not published.</div>`;
+  const items = Array.isArray(labWork.projects) ? labWork.projects : [];
+  $("projectGrid").innerHTML = items.length ? items.map((item, i) => `
+    <article class="project-card curated-project reveal" style="transition-delay:${Math.min(i * 45, 180)}ms">
+      <div class="project-accent" aria-hidden="true"></div>
+      <div class="work-card-top">
+        <span class="project-type">${safe(item.type || "Research Project")}</span>
+        <span class="work-index">${String(i + 1).padStart(2, "0")}</span>
+      </div>
+      <div class="project-title-row">
+        <h3>${safe(item.title || "Untitled project")}</h3>
+        <span class="project-status">${safe(item.status || "Active")}</span>
+      </div>
+      <p>${safe(item.description || "Add a project description in data/lab-work.json.")}</p>
+      ${tagsMarkup(item.tags || [], 4)}
+      <div class="project-bottom">
+        ${workTeamMarkup(item.members || [], true)}
+        ${projectLinksMarkup(item.links || [])}
+      </div>
+    </article>`).join("") : `
+      <article class="empty-work-card reveal">
+        <i data-lucide="folder-kanban"></i>
+        <div><strong>Add selected DINA projects</strong><span>Edit <code>data/lab-work.json</code> and add entries under <code>projects</code>.</span></div>
+      </article>`;
+}
+
+function renderWork() {
+  renderNowBuilding();
+  renderProjects();
+  bindMemberCards();
+  window.lucide?.createIcons();
+  activateReveal();
 }
 
 function renderStats(stats) {
-  $("statCommits").textContent = formatNumber(stats.totalCommits);
+  const commits = Number(stats.totalCommits || 0);
+  const coffeeRate = Math.max(1, Number(CONFIG.commitsPerCoffee || 20));
+  const coffees = Math.floor(commits / coffeeRate);
+  const remainder = commits % coffeeRate;
+  const toNextCoffee = remainder === 0 ? coffeeRate : coffeeRate - remainder;
+
+  $("statCommits").textContent = formatNumber(commits);
   $("statRepos").textContent = formatNumber(stats.repoCount);
-  $("statActive").textContent = formatNumber(stats.activeContributors?.length || 0);
-  $("activeWindow").textContent = `last ${stats.windowDays || 90} days`;
-  $("activityRange").textContent = `${stats.windowDays || 90} days`;
+  $("statCoffee").textContent = formatNumber(coffees);
+  $("coffeeProgress").textContent = commits ? `${toNextCoffee} commits to next ☕` : `1 coffee / ${coffeeRate} commits`;
   $("lastUpdated").textContent = formatDate(stats.generatedAt);
-
-  const contributors = (stats.activeContributors || []).slice(0, 7);
-  $("contributorsList").innerHTML = contributors.length ? contributors.map((c, i) => `
-    <a class="contributor-row" href="https://github.com/${encodeURIComponent(c.login || "")}" target="_blank" rel="noreferrer">
-      <span class="rank">${String(i + 1).padStart(2, "0")}</span>
-      <img class="tiny-avatar" src="${safe(c.avatar_url || "")}" alt="" onerror="this.style.visibility='hidden'">
-      <div class="contributor-main"><strong>${safe(c.name || c.login || "Unknown")}</strong><span>@${safe(c.login || "unknown")}</span></div>
-      <span class="contribution-count">${formatNumber(c.commits)} commits</span>
-    </a>`).join("") : `<p style="color:#74808d;font-size:11px;line-height:1.7">No activity data yet. Run the GitHub Actions workflow after setting the organization name.</p>`;
-
-  $("repoPulse").innerHTML = `<p style="color:#74808d;font-size:11px;line-height:1.8">Private repository details are intentionally hidden. Only aggregate repository count, commit activity and configured-member activity are published.</p>`;
-
-  renderProjects();
 }
 
 async function getJson(url) {
@@ -168,21 +305,38 @@ async function getJson(url) {
 async function loadData() {
   try { members = await getJson(CONFIG.membersUrl); }
   catch (e) { console.error(e); members = []; }
+
   try { githubStats = await getJson(CONFIG.statsUrl); }
-  catch (e) { console.error(e); githubStats = { repoCount: 0, totalCommits: 0, activeContributors: [], repositories: [], profiles: {}, windowDays: 90 }; }
+  catch (e) {
+    console.error(e);
+    githubStats = { organization: "", repoCount: 0, totalCommits: 0, activeContributors: [], repositories: [], profiles: {}, windowDays: 90 };
+  }
+
+  try { labWork = await getJson(CONFIG.workUrl); }
+  catch (e) {
+    console.error(e);
+    labWork = { currentWork: [], projects: [] };
+  }
+
   renderPeople();
   renderStats(githubStats);
+  renderWork();
+  configureLinks(githubStats.organization);
   window.lucide?.createIcons();
   activateReveal();
 }
 
-function configureLinks() {
-  const org = CONFIG.githubOrg;
+function configureLinks(statsOrg = "") {
+  const org = statsOrg || CONFIG.githubOrg;
   const href = org && org !== "YOUR_GITHUB_ORG" ? `https://github.com/${encodeURIComponent(org)}` : "https://github.com";
-  ["orgLinkTop", "orgLinkHero", "orgLinkProjects"].forEach(id => $(id).href = href);
+  ["orgLinkTop", "orgLinkHero"].forEach(id => { if ($(id)) $(id).href = href; });
 }
 
 function activateReveal() {
+  if (!("IntersectionObserver" in window)) {
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("visible"));
+    return;
+  }
   const io = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add("visible"); io.unobserve(entry.target); }
   }), { threshold: .12 });
@@ -191,7 +345,7 @@ function activateReveal() {
 
 function setupMotion() {
   const glow = $("cursorGlow");
-  window.addEventListener("pointermove", e => { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; }, { passive: true });
+  if (glow) window.addEventListener("pointermove", e => { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; }, { passive: true });
   const card = $("orbitalCard");
   if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   card.addEventListener("pointermove", e => {

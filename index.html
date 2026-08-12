@@ -89,7 +89,7 @@
         </div>
       </div>
 
-      <div class="stats-ribbon reveal" id="activity">
+      <div class="stats-ribbon reveal">
         <article class="stat-card">
           <span class="stat-icon"><i data-lucide="git-commit-horizontal"></i></span>
           <div><strong id="statCommits">—</strong><span>Total commits</span></div>
@@ -100,10 +100,10 @@
           <div><strong id="statRepos">—</strong><span>Projects</span></div>
           <em>repositories</em>
         </article>
-        <article class="stat-card">
-          <span class="stat-icon"><i data-lucide="radio-tower"></i></span>
-          <div><strong id="statActive">—</strong><span>Active contributors</span></div>
-          <em id="activeWindow">last 90 days</em>
+        <article class="stat-card coffee-card">
+          <span class="stat-icon"><i data-lucide="coffee"></i></span>
+          <div><strong id="statCoffee">—</strong><span>Research coffees</span></div>
+          <em id="coffeeProgress">1 coffee / 20 commits</em>
         </article>
         <article class="stat-card stat-card-wide">
           <span class="live-dot"></span>
@@ -147,27 +147,17 @@
       <div class="member-grid" id="memberGrid"></div>
     </section>
 
-    <section class="activity-section section-shell">
+    <section class="activity-section section-shell" id="activity">
       <div class="section-heading reveal">
         <div>
-          <span class="section-kicker">LIVE SIGNALS</span>
+          <span class="section-kicker">NOW BUILDING</span>
           <h2>Who is building right now?</h2>
         </div>
-        <p>Computed from organization repositories by the scheduled GitHub workflow.</p>
+        <p>A curated snapshot of active DINA research. Projects and teams here are maintained manually, while aggregate GitHub metrics stay automated.</p>
       </div>
-      <div class="activity-layout">
-        <div class="panel reveal">
-          <div class="panel-head"><h3>Most active</h3><span id="activityRange">90 days</span></div>
-          <div class="contributors-list" id="contributorsList">
-            <div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div>
-          </div>
-        </div>
-        <div class="panel reveal" data-delay="100">
-          <div class="panel-head"><h3>Repository pulse</h3><span>recent activity</span></div>
-          <div class="repo-pulse" id="repoPulse">
-            <div class="loading-row"></div><div class="loading-row"></div><div class="loading-row"></div>
-          </div>
-        </div>
+      <div class="now-building-grid" id="nowBuildingGrid">
+        <div class="work-loading-card reveal"></div>
+        <div class="work-loading-card reveal"></div>
       </div>
     </section>
 
@@ -175,13 +165,14 @@
       <div class="section-heading reveal">
         <div>
           <span class="section-kicker">PROJECTS</span>
-          <h2>From papers to production-grade systems.</h2>
+          <h2>From research questions to working systems.</h2>
         </div>
-        <p>Public repositories are pulled from GitHub and ordered by recent activity.</p>
+        <p>Selected DINA projects are curated manually. Repository details stay private; papers, demos and public links can be attached whenever they are ready.</p>
       </div>
-      <div class="project-grid" id="projectGrid"></div>
-      <div class="center-action reveal">
-        <a id="orgLinkProjects" class="button button-primary" href="#" target="_blank" rel="noreferrer">View all repositories <i data-lucide="github"></i></a>
+      <div class="project-grid" id="projectGrid">
+        <div class="work-loading-card reveal"></div>
+        <div class="work-loading-card reveal"></div>
+        <div class="work-loading-card reveal"></div>
       </div>
     </section>
 
