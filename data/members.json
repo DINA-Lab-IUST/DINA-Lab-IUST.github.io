@@ -17,6 +17,7 @@
     "linkedin": "https://www.linkedin.com/in/ali-ahmadi-79ah/",
     "photo": "assets/ali-ahmadi.jpg",
     "bio": "Core research lead coordinating lab-wide research and engineering activities.",
+    "degree": "msc",
     "focus": ["LLM", "Federated Learning", "FedLLM", "Software", "Distributed Systems", "Edge Computing"]
   },
   {
@@ -27,6 +28,7 @@
     "linkedin": "https://www.linkedin.com/in/hessam-koucheki-8818b8207/",
     "photo": "assets/hessam.jpg",
     "bio": "Core research lead coordinating lab-wide research and engineering activities.",
+    "degree": "msc",
     "focus": ["LLM", "Federated Learning", "FedLLM", "Software", "Distributed Systems", "Edge Computing"]
   },
   {
@@ -37,6 +39,7 @@
     "linkedin": "https://www.linkedin.com/in/ahoora-amini/",
     "photo": "assets/ahoora-amini.png",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["Edge Computing", "FaaS", "Serverless"]
   },
   {
@@ -47,6 +50,7 @@
     "linkedin": "https://www.linkedin.com/in/abolfazl-arshia/",
     "photo": "assets/Abolfazl-Arshia.png",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["Edge Computing", "FaaS", "Serverless"]
   },
   {
@@ -57,6 +61,7 @@
     "linkedin": "https://www.linkedin.com/in/amirhossein-amin-moghaddam/",
     "photo": "assets/Amirhossein-Amin-Moghaddam.png",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["LLM", "Edge Computing", "Distributed Systems"]
   },
   {
@@ -67,17 +72,19 @@
     "linkedin": "https://www.linkedin.com/in/mobin-taherzadeh-a7ba801bb/",
     "photo": "assets/Mobin-Thz.png",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["Software", "LLM"]
   },
   {
-    "name": "Sina Moradian",
+    "name": "Asma Rashidian",
     "role": "Researcher",
     "leadership": "member",
-    "github": "https://github.com/Sinac0de",
-    "linkedin": "https://www.linkedin.com/in/sina-moradian-198836223/",
-    "photo": "assets/Sina-Moradian.png",
+    "github": "https://github.com/Asma-Rashidian",
+    "linkedin": "https://www.linkedin.com/in/asma-rashidian/",
+    "photo": "assets/Asma-Rashidian.png",
     "bio": "Add a short research bio here.",
-    "focus": ["Edge Computing", "Software"]
+    "degree": "phd",
+    "focus": ["Edge Computing", "LLM"]
   },
   {
     "name": "Alimahdi Bahrami",
@@ -87,6 +94,7 @@
     "linkedin": "https://www.linkedin.com/in/alimahdibahrami/",
     "photo": "assets/AlimahdiBahrami.png",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["Software", "LLM"]
   },
   {
@@ -97,17 +105,19 @@
     "linkedin": "https://www.linkedin.com/in/ahm-id/",
     "photo": "assets/Amirhossein-Maleki.jpg",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["Edge Computing", "Software", "Cloud", "Distributed Systems"]
   },
   {
-    "name": "Asma Rashidian",
+    "name": "Sina Moradian",
     "role": "Researcher",
     "leadership": "member",
-    "github": "https://github.com/Asma-Rashidian",
-    "linkedin": "https://www.linkedin.com/in/asma-rashidian/",
-    "photo": "assets/Asma-Rashidian.png",
+    "github": "https://github.com/Sinac0de",
+    "linkedin": "https://www.linkedin.com/in/sina-moradian-198836223/",
+    "photo": "assets/Sina-Moradian.png",
     "bio": "Add a short research bio here.",
-    "focus": ["Edge Computing", "LLM"]
+    "degree": "msc",
+    "focus": ["Edge Computing", "Software"]
   },
   {
     "name": "Erfan Samimi",
@@ -117,6 +127,7 @@
     "linkedin": "https://www.linkedin.com/in/erfan-samimi-3a620b208/",
     "photo": "assets/ErfanSamimi.jpg",
     "bio": "Add a short research bio here.",
+    "degree": "msc",
     "focus": ["Software", "LLM", "Distributed Systems"]
   },
   {
@@ -127,6 +138,7 @@
     "linkedin": "https://www.linkedin.com/in/mobina-hoshiaripour/",
     "photo": "assets/Mobina-Hoshiaripour.png",
     "bio": "Add a short research bio here.",
+    "degree": "bsc",
     "focus": ["Software", "LLM"]
   },
   {
@@ -137,6 +149,7 @@
     "linkedin": "https://www.linkedin.com/in/mohammad-hosein-pakdaman-54583a373/",
     "photo": "assets/mohammadhosein-p.png",
     "bio": "Add a short research bio here.",
+    "degree": "bsc",
     "focus": ["Software", "Edge Computing", "Distributed Systems"]
   },
   {
@@ -147,6 +160,7 @@
     "linkedin": "https://www.linkedin.com/in/fateme-k-54a5182aa/",
     "photo": "assets/fatemehkerdegari.png",
     "bio": "Add a short research bio here.",
+    "degree": "bsc",
     "focus": ["LLM", "FedLLM", "Distributed Systems"]
   }
 ]

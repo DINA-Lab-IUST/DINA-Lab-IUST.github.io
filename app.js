@@ -92,6 +92,28 @@ function removeLegacyPhotoOverlays() {
   document.querySelectorAll('.portrait svg[data-lucide="user-round"], .member-avatar svg[data-lucide="user-round"], .stack-avatar svg[data-lucide="user-round"]').forEach(node => node.remove());
 }
 
+function degreeBadgeMarkup(member) {
+  const raw = String(member?.degree || member?.educationLevel || member?.studyLevel || "").trim();
+  if (!raw) return "";
+
+  const key = raw.toLowerCase().replace(/[.\s_-]+/g, "");
+  let degree = null;
+
+  if (["bsc", "bs", "bachelor", "bachelors", "undergrad", "undergraduate"].includes(key) || raw === "کارشناسی") {
+    degree = { code: "B.Sc", label: "Bachelor's student", stars: 1, className: "degree-bsc" };
+  } else if (["msc", "ms", "master", "masters", "graduate"].includes(key) || raw === "کارشناسی ارشد") {
+    degree = { code: "M.Sc", label: "Master's student", stars: 2, className: "degree-msc" };
+  } else if (["phd", "doctorate", "doctoral", "doctor"].includes(key) || raw === "دکترا" || raw === "دکتری") {
+    degree = { code: "Ph.D", label: "PhD student", stars: 3, className: "degree-phd" };
+  }
+
+  if (!degree) return "";
+  return `<span class="degree-badge ${degree.className}" title="${safe(degree.label)}" aria-label="${safe(degree.label)}">
+    <span class="degree-stars" aria-hidden="true">${"★".repeat(degree.stars)}</span>
+    <span class="degree-code">${degree.code}</span>
+  </span>`;
+}
+
 function linkButtons(member, mini = false) {
   const gh = member.github ? `https://github.com/${encodeURIComponent(member.github)}` : "";
   const links = [];
@@ -131,7 +153,7 @@ function memberCard(member, isLead = false, index = 0) {
         </div>
         <p class="member-bio">${safe(bio)}</p>
         <div class="member-tags">${(member.focus || []).slice(0, 3).map(x => `<span>${safe(x)}</span>`).join("")}</div>
-        <div class="member-footer"><small>${safe(location)}</small><div class="mini-links" onclick="event.stopPropagation()">${linkButtons(member, true)}</div></div>
+        <div class="member-footer"><div class="member-footer-left"><small>${safe(location)}</small>${degreeBadgeMarkup(member)}</div><div class="mini-links" onclick="event.stopPropagation()">${linkButtons(member, true)}</div></div>
       </div>
     </article>`;
 }

@@ -103,3 +103,16 @@ button,input{font:inherit}
 .stack-avatar.photo-missing {
   background:linear-gradient(145deg,#152a3e,#0b1725);
 }
+
+
+/* DINA / Academic level badges — optional per member via data/members.json -> degree */
+.member-footer-left{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
+.member-footer-left>small{white-space:nowrap}
+.degree-badge{--degree-accent:#9fb4c8;--degree-glow:rgba(159,180,200,.10);display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px 0 8px;border:1px solid color-mix(in srgb,var(--degree-accent) 34%,transparent);border-radius:999px;background:linear-gradient(135deg,var(--degree-glow),rgba(255,255,255,.018));box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 5px 18px rgba(0,0,0,.12);color:var(--degree-accent);font:700 8px/1 "Space Grotesk";letter-spacing:.035em;white-space:nowrap;transition:transform .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease}
+.degree-stars{font-size:8px;letter-spacing:1.5px;line-height:1;text-shadow:0 0 12px color-mix(in srgb,var(--degree-accent) 34%,transparent)}
+.degree-code{color:color-mix(in srgb,var(--degree-accent) 82%,white);letter-spacing:.055em}
+.degree-bsc{--degree-accent:#78b7ff;--degree-glow:rgba(56,132,220,.10)}
+.degree-msc{--degree-accent:#ff9d57;--degree-glow:rgba(255,122,24,.10)}
+.degree-phd{--degree-accent:#efd27d;--degree-glow:rgba(226,182,87,.11)}
+.member-card:hover .degree-badge{transform:translateY(-1px);border-color:color-mix(in srgb,var(--degree-accent) 55%,transparent);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 6px 22px var(--degree-glow)}
+@media(max-width:680px){.degree-badge{height:23px;padding-inline:8px}.degree-stars{letter-spacing:1px}}
