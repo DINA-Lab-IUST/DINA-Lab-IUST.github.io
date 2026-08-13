@@ -1,78 +1,123 @@
-# DINA LAB Website
+<div align="center">
 
-Static GitHub Pages website for **DINA LAB — Distributed Infrastructure for NextGen Applications**.
+# DINA LAB
 
-## 1. Replace organization handle
+### Distributed Infrastructure for NextGen Applications
 
-Edit `app.js`:
+**Researching intelligent, distributed, cloud-native systems for the next generation of applications.**
 
-```js
-const CONFIG = {
-  githubOrg: "YOUR_ORG_HANDLE",
-  ...
-};
+<br>
+
+![HTML5](https://img.shields.io/badge/HTML5-111827?style=for-the-badge&logo=html5&logoColor=FF7A18)
+![CSS3](https://img.shields.io/badge/CSS3-111827?style=for-the-badge&logo=css3&logoColor=1572B6)
+![JavaScript](https://img.shields.io/badge/JavaScript-111827?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![JSON](https://img.shields.io/badge/JSON-111827?style=for-the-badge&logo=json&logoColor=F5E7CE)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-111827?style=for-the-badge&logo=githubactions&logoColor=2088FF)
+![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-111827?style=for-the-badge&logo=github&logoColor=FFFFFF)
+
+</div>
+
+---
+
+## About DINA LAB
+
+**DINA LAB — Distributed Infrastructure for NextGen Applications** is a research lab focused on the intersection of intelligent systems and modern distributed infrastructure.
+
+The lab explores how next-generation applications can be designed, deployed, and coordinated across cloud, edge, serverless, and federated environments.
+
+The lab is directed by **Dr. Mehrdad Ashtiani**, alongside core research leads and researchers working across systems, AI, and distributed computing.
+
+### Research Areas
+
+`LLM` · `Federated Learning` · `FedLLM` · `Software Systems` · `FaaS` · `Serverless` · `Cloud Computing` · `Edge Computing`
+
+---
+
+## Website
+
+This repository contains the official DINA LAB website — a modern, responsive research showcase designed around the lab's identity, people, projects, and activity.
+
+### Main Sections
+
+- **Research** — visual presentation of the lab's main research directions.
+- **People** — profiles for the Lab Director, Core Leads, and researchers.
+- **Academic Badges** — compact degree indicators for B.Sc, M.Sc, and Ph.D members.
+- **Current Work** — manually curated research threads showing what teams are currently building.
+- **Projects** — project cards with descriptions, research tags, contributors, and optional publication/demo links.
+- **GitHub Activity** — privacy-aware aggregate repository and commit statistics.
+- **Research Coffee Meter** — a playful activity metric derived from commit count.
+
+---
+
+## Member & Project Data
+
+The website is content-driven and keeps most frequently edited information in simple JSON files.
+
+```text
+data/
+├── members.json        # People, roles, photos, links, degree and research focus
+├── lab-work.json       # Current work and project information
+└── github-stats.json   # Generated aggregate GitHub activity
 ```
 
-Then in GitHub repository **Settings → Secrets and variables → Actions → Variables**, create:
+Member references inside project data are automatically matched with `members.json`, allowing the site to reuse profile photos and identity information consistently across sections.
 
-- `DINA_GITHUB_ORG` = your exact GitHub organization handle
+---
 
-## 2. Add team members
+## GitHub Analytics
 
-Edit `data/members.json`.
+DINA LAB includes an automated statistics workflow built with **GitHub Actions**.
 
-For each member set:
-- `name`
-- `role`
-- `leadership`: `director`, `lead`, or `member`
-- `github`: GitHub username only (no URL)
-- `linkedin`: full LinkedIn URL
-- `photo`: local image path, e.g. `assets/name.jpg` (or leave it empty to use initials/GitHub avatar)
-- `bio`
-- `focus`
+It can surface aggregate information such as:
 
-The first director is rendered in the Director section. `lead` members receive the gold frame.
+- total repository count
+- organization-wide commit activity
+- last statistics update
+- derived activity indicators such as the Research Coffee Meter
 
-## 3. Add photos
+The public website is designed to expose **aggregate metrics only** and does not need to publish private repository names, source code, or internal project details.
 
-Place JPG/WebP files in `assets/` and point `photo` to them in `data/members.json`.
-If a GitHub username is set, the scheduled workflow also retrieves the user's current GitHub avatar and profile metadata; the GitHub avatar is preferred by the UI.
+---
 
-## 4. Token for organization-wide statistics
+## Tech Stack
 
-Do **not** place a token in `app.js` or any public file.
+| Layer | Technology |
+|---|---|
+| Structure | HTML5 |
+| Styling | Modern CSS3 |
+| Interactions | Vanilla JavaScript |
+| Content | JSON |
+| Automation | GitHub Actions |
+| Hosting | GitHub Pages |
+| Icons | Lucide |
+| GitHub Data | GitHub REST API |
 
-Create a fine-grained personal access token owned by / able to access the organization, with minimum read-only permissions needed for the repositories you want included. For public-repo stats, select the relevant repositories and grant repository **Contents: Read-only** (Metadata is included automatically). If organization policy requires approval, an owner may need to approve it.
+The site intentionally avoids a heavy frontend framework, keeping the codebase lightweight, transparent, and easy to maintain.
 
-Add the token as repository secret:
+---
 
-- Repository → Settings → Secrets and variables → Actions → Secrets → New repository secret
-- Name: `DINA_GITHUB_TOKEN`
-- Value: the token
+## Design Language
 
-The normal workflow `GITHUB_TOKEN` is not enough to read other organization repositories because it is scoped to the repository running the workflow.
+The visual identity combines:
 
-## 5. GitHub Pages settings
+- deep navy backgrounds
+- warm cream typography
+- DINA orange accents
+- gold leadership highlights
+- subtle glass surfaces
+- minimal motion and glow effects
+- responsive research-oriented layouts
 
-Repository → Settings → Pages → Build and deployment → Source → **GitHub Actions**.
+The goal is to give the lab a visual identity that feels equally at home in **AI research, distributed systems, and production-grade infrastructure**.
 
-Then open **Actions** and manually run `Build DINA Lab stats and deploy Pages` once.
-The workflow also runs after every push to `main` and every 6 hours.
+---
 
-## 6. Local preview
+<div align="center">
 
-Because the page loads JSON using `fetch`, don't open `index.html` directly via `file://`.
-Run a tiny web server:
+### DINA LAB
 
-```bash
-python3 -m http.server 8080
-```
+**Distributed Infrastructure for NextGen Applications**
 
-Then visit `http://localhost:8080`.
+*Research · Engineering · Intelligent Infrastructure*
 
-## Notes on the metrics
-
-- `Projects`: public, non-fork, non-archived organization repositories.
-- `Total commits`: an estimate based on pagination of each repository's default-branch commit history.
-- `Active contributors`: GitHub users with commits in the configured 90-day window.
-- For extremely high-activity repositories, the workflow caps commit pagination using `MAX_COMMIT_PAGES_PER_REPO` to avoid excessive API usage. Increase it if needed.
+</div>
