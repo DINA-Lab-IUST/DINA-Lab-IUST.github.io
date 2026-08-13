@@ -32,6 +32,17 @@
     "focus": ["LLM", "Federated Learning", "FedLLM", "Software", "Distributed Systems", "Edge Computing"]
   },
   {
+    "name": "Sheyda Niknafs",
+    "role": "Researcher",
+    "leadership": "member",
+    "github": "https://github.com",
+    "linkedin": "https://www.linkedin.com/in/sheyda-niknafs/",
+    "photo": "assets/SheydaNiknafs.png",
+    "bio": "Add a short research bio here.",
+    "degree": "msc",
+    "focus": ["Edge Computing", "Distributed Systems"]
+  },
+  {
     "name": "Ahoora Amini",
     "role": "Researcher",
     "leadership": "member",

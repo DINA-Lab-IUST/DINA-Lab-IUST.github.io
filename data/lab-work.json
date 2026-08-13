@@ -52,6 +52,15 @@
       "tags": ["LLM", "Software", "Edge Computing"],
       "members": ["Ali Ahmadi", "Hessam Koucheki"],
       "links": []
+    },
+    {
+      "title": "Auto-Scaling",
+      "type": "Research Project",
+      "status": "Under Review",
+      "description": "A framework for Auto-Scaling",
+      "tags": ["Edge Computing"],
+      "members": ["Sheyda Niknafs"],
+      "links": []
     }
   ]
 }
