@@ -24,6 +24,40 @@ let githubStats = null;
 let labWork = { currentWork: [], projects: [] };
 
 const $ = (id) => document.getElementById(id);
+
+const THEME_STORAGE_KEY = "dina:theme";
+
+function applyTheme(theme, persist = false) {
+  const normalized = theme === "light" ? "light" : "dark";
+  const isLight = normalized === "light";
+  document.documentElement.dataset.theme = normalized;
+
+  const toggle = $("themeToggle");
+  if (toggle) {
+    toggle.setAttribute("aria-pressed", String(isLight));
+    toggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    const label = toggle.querySelector(".theme-toggle-label");
+    if (label) label.textContent = isLight ? "Dark" : "Light";
+  }
+
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeMeta) themeMeta.setAttribute("content", isLight ? "#f6efe4" : "#07111f");
+
+  if (persist) {
+    try { localStorage.setItem(THEME_STORAGE_KEY, normalized); }
+    catch { /* Theme still works when storage is unavailable. */ }
+  }
+}
+
+function setupThemeToggle() {
+  applyTheme(document.documentElement.dataset.theme || "dark");
+  const toggle = $("themeToggle");
+  if (!toggle) return;
+  toggle.addEventListener("click", () => {
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    applyTheme(nextTheme, true);
+  });
+}
 const safe = (value = "") => String(value)
   .replaceAll("&", "&amp;")
   .replaceAll("<", "&lt;")
@@ -428,6 +462,7 @@ function setupMotion() {
   card.addEventListener("pointerleave", () => card.style.transform = "rotateY(0) rotateX(0)");
 }
 
+setupThemeToggle();
 renderResearch();
 configureLinks();
 setupMotion();

@@ -4,6 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#07111f" />
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("dina:theme");
+        document.documentElement.dataset.theme = savedTheme === "light" ? "light" : "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    })();
+  </script>
   <meta name="description" content="DINA Lab — Distributed Infrastructure for NextGen Applications. Research in LLMs, Federated Learning, Serverless, Cloud and Edge Computing." />
   <meta property="og:title" content="DINA LAB — Distributed Infrastructure for NextGen Applications" />
   <meta property="og:description" content="Researching intelligent, distributed and next-generation application infrastructures." />
@@ -13,9 +23,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=20260813-degree-badges-1" />
+  <link rel="stylesheet" href="styles.css?v=20260814-light-mode-1" />
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
-  <script src="app.js?v=20260813-degree-badges-1" defer></script>
+  <script src="app.js?v=20260814-light-mode-1" defer></script>
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -37,10 +47,19 @@
       <a href="#projects">Projects</a>
     </nav>
 
-    <a id="orgLinkTop" class="button button-ghost" href="#" target="_blank" rel="noreferrer">
-      <i data-lucide="github"></i>
-      GitHub
-    </a>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+        <span class="theme-toggle-icons" aria-hidden="true">
+          <i class="theme-icon theme-icon-sun" data-lucide="sun"></i>
+          <i class="theme-icon theme-icon-moon" data-lucide="moon"></i>
+        </span>
+        <span class="theme-toggle-label">Light</span>
+      </button>
+      <a id="orgLinkTop" class="button button-ghost" href="#" target="_blank" rel="noreferrer">
+        <i data-lucide="github"></i>
+        GitHub
+      </a>
+    </div>
   </header>
 
   <main>
@@ -153,7 +172,7 @@
           <span class="section-kicker">NOW BUILDING</span>
           <h2>Who is building right now?</h2>
         </div>
-        <p>A curated showcase of our ongoing projects. Explore what our researchers are developing right now, from federated learning to software refactoring.</p>
+        <p>A curated snapshot of active DINA research. Projects and teams here are maintained manually, while aggregate GitHub metrics stay automated.</p>
       </div>
       <div class="now-building-grid" id="nowBuildingGrid">
         <div class="work-loading-card reveal"></div>
@@ -165,9 +184,9 @@
       <div class="section-heading reveal">
         <div>
           <span class="section-kicker">PROJECTS</span>
-          <h2>From research to paper.</h2>
+          <h2>From research questions to working systems.</h2>
         </div>
-        <p>Explore our handpicked applied research projects. We highlight the journey of building scalable solutions from complex research questions.</p>
+        <p>Selected DINA projects are curated manually. Repository details stay private; papers, demos and public links can be attached whenever they are ready.</p>
       </div>
       <div class="project-grid" id="projectGrid">
         <div class="work-loading-card reveal"></div>
