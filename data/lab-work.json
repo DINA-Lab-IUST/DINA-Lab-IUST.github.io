@@ -12,7 +12,7 @@
       "status": "Research",
       "description": "We propose CARER...",
       "tags": ["LLM", "Software", "Refactoring"],
-      "members": ["Ali Ahmadi", "Mobina Hoshiaripour"]
+      "members": ["Ali Ahmadi", "Mobina Hoshiaripour", "Mobin Taherzadeh"]
     },
     {
       "title": "Fed + LoRA",
