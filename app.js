@@ -176,7 +176,12 @@ function renderDirector(member) {
 function memberCard(member, isLead = false, index = 0) {
   const p = profileFor(member);
   const bio = member.bio || p.bio || "No bio yet.";
-  const location = p.location || member.role || "DINA LAB";
+  // Card footer is controlled locally from data/members.json.
+  // If cardFooter is omitted, the member's role is used automatically.
+  // Set cardFooter to an empty string when the footer label should be hidden.
+  const footerLabel = Object.prototype.hasOwnProperty.call(member, "cardFooter")
+    ? String(member.cardFooter || "")
+    : (member.role || "DINA LAB");
   return `
     <article class="member-card ${isLead ? "lead" : ""} reveal" data-member-index="${index}" tabindex="0" role="button" aria-label="Open profile for ${safe(member.name)}">
       ${isLead ? `<span class="lead-badge">CORE LEAD</span>` : ""}
@@ -187,7 +192,7 @@ function memberCard(member, isLead = false, index = 0) {
         </div>
         <p class="member-bio">${safe(bio)}</p>
         <div class="member-tags">${(member.focus || []).slice(0, 3).map(x => `<span>${safe(x)}</span>`).join("")}</div>
-        <div class="member-footer"><div class="member-footer-left"><small>${safe(location)}</small>${degreeBadgeMarkup(member)}</div><div class="mini-links" onclick="event.stopPropagation()">${linkButtons(member, true)}</div></div>
+        <div class="member-footer"><div class="member-footer-left"><small>${safe(footerLabel)}</small>${degreeBadgeMarkup(member)}</div><div class="mini-links" onclick="event.stopPropagation()">${linkButtons(member, true)}</div></div>
       </div>
     </article>`;
 }

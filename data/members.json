@@ -2,6 +2,7 @@
   {
     "name": "Dr. Mehrdad Ashtiani",
     "role": "Lab Director",
+    "cardFooter": "Lab Director",
     "leadership": "director",
     "github": "",
     "linkedin": "https://www.linkedin.com/in/mehrdad-ashtiani-09170577/",
@@ -12,6 +13,7 @@
   {
     "name": "Ali Ahmadi",
     "role": "Core Lead",
+    "cardFooter": "Core Lead",
     "leadership": "lead",
     "github": "AliAhmadi-Software",
     "linkedin": "https://www.linkedin.com/in/ali-ahmadi-79ah/",
@@ -23,6 +25,7 @@
   {
     "name": "Hessam Koucheki",
     "role": "Core Lead",
+    "cardFooter": "Core Lead",
     "leadership": "lead",
     "github": "hessam-kk",
     "linkedin": "https://www.linkedin.com/in/hessam-koucheki-8818b8207/",
@@ -34,6 +37,7 @@
   {
     "name": "Sheyda Niknafs",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "Sheyda-nkfs",
     "linkedin": "https://www.linkedin.com/in/sheyda-niknafs/",
@@ -45,6 +49,7 @@
   {
     "name": "Ahoora Amini",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "Ahooraa",
     "linkedin": "https://www.linkedin.com/in/ahoora-amini/",
@@ -56,6 +61,7 @@
   {
     "name": "Abolfazl Arshia",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "MrSEKIRO",
     "linkedin": "https://www.linkedin.com/in/abolfazl-arshia/",
@@ -67,6 +73,7 @@
   {
     "name": "Amirhossein Amin Moghaddam",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "Aminam78",
     "linkedin": "https://www.linkedin.com/in/amirhossein-amin-moghaddam/",
@@ -78,6 +85,7 @@
   {
     "name": "Mobin Taherzadeh",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "Mobin-Thz",
     "linkedin": "https://www.linkedin.com/in/mobin-taherzadeh-a7ba801bb/",
@@ -89,6 +97,7 @@
   {
     "name": "Asma Rashidian",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "Asma-Rashidian",
     "linkedin": "https://www.linkedin.com/in/asma-rashidian/",
@@ -100,6 +109,7 @@
   {
     "name": "Alimahdi Bahrami",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "alimahdibahrami",
     "linkedin": "https://www.linkedin.com/in/alimahdibahrami/",
@@ -111,6 +121,7 @@
   {
     "name": "Amirhossein Maleki",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "AHM-ID",
     "linkedin": "https://www.linkedin.com/in/ahm-id/",
@@ -122,6 +133,7 @@
   {
     "name": "Sina Moradian",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "Sinac0de",
     "linkedin": "https://www.linkedin.com/in/sina-moradian-198836223/",
@@ -133,6 +145,7 @@
   {
     "name": "Erfan Samimi",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "ErfanSamimi",
     "linkedin": "https://www.linkedin.com/in/erfan-samimi-3a620b208/",
@@ -144,6 +157,7 @@
   {
     "name": "Mobina Hoshiaripour",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "MobinaHp",
     "linkedin": "https://www.linkedin.com/in/mobina-hoshiaripour/",
@@ -155,6 +169,7 @@
   {
     "name": "Mohammad hosein Pakdaman",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "mohammadhosein-p",
     "linkedin": "https://www.linkedin.com/in/mohammad-hosein-pakdaman-54583a373/",
@@ -166,6 +181,7 @@
   {
     "name": "Fatemeh Kerdegari",
     "role": "Researcher",
+    "cardFooter": "Researcher",
     "leadership": "member",
     "github": "fatemehkerdegari80-ux",
     "linkedin": "https://www.linkedin.com/in/fateme-k-54a5182aa/",
