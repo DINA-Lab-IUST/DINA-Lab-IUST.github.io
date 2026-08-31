@@ -1,20 +1,30 @@
 {
   "presentations": [
     {
-      "member": "Ali Ahmadi",
-      "title": "Replace with the presentation title",
-      "date": "Monday, DD Month",
-      "time": "00:00",
+      "member": "Sina Moradian",
+      "title": "Agent-Based Automated Testing for Dynamic Difficulty Adjustment",
+      "date": "Sat, 05 September",
+      "time": "09:00",
       "location": "DINA Lab / Online",
       "link": "",
       "linkLabel": "Join presentation",
       "series": "NEXT WEEK"
     },
     {
-      "member": "Hessam Koucheki",
-      "title": "Replace with the presentation title",
-      "date": "Wednesday, DD Month",
-      "time": "00:00",
+      "member": "Amirhossein Maleki",
+      "title": "Proactive Auto-scaling: A Review of Stability and Efficiency",
+      "date": "Sat, 05 September",
+      "time": "09:30",
+      "location": "DINA Lab / Online",
+      "link": "",
+      "linkLabel": "Join presentation",
+      "series": "NEXT WEEK"
+    },
+    {
+      "member": "Erfan Samimi",
+      "title": "A review of program repair approaches using LLMs",
+      "date": "Sat, 05 September",
+      "time": "10:00",
       "location": "DINA Lab / Online",
       "link": "",
       "linkLabel": "Join presentation",
