@@ -56,11 +56,31 @@ The website is content-driven and keeps most frequently edited information in si
 ```text
 data/
 ├── members.json        # People, roles, photos, links, degree and research focus
+├── presentations.json  # Upcoming talks; member name, title, date, time and link
 ├── lab-work.json       # Current work and project information
 └── github-stats.json   # Generated aggregate GitHub activity
 ```
 
 Member references inside project data are automatically matched with `members.json`, allowing the site to reuse profile photos and identity information consistently across sections.
+
+### Upcoming presentations
+
+Edit `data/presentations.json` to manage the numbered presentation list shown immediately before **Now Building**. The `member` value is matched against `name` (or `github`) in `data/members.json`; the card then reuses that person's photo, role and research-focus tags automatically.
+
+```json
+{
+  "member": "Ali Ahmadi",
+  "title": "Presentation title",
+  "date": "Monday, 7 September",
+  "time": "10:00",
+  "location": "DINA Lab / Online",
+  "link": "https://example.com/presentation",
+  "linkLabel": "Join presentation",
+  "series": "NEXT WEEK"
+}
+```
+
+Add, remove or reorder objects inside `presentations`; the visible card numbers update automatically. Leave `link` empty to show “Link coming soon”.
 
 ---
 

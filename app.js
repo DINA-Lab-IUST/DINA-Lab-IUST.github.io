@@ -5,6 +5,7 @@ const CONFIG = {
   statsUrl: "data/github-stats.json",
   membersUrl: "data/members.json",
   workUrl: "data/lab-work.json",
+  presentationsUrl: "data/presentations.json",
   commitsPerCoffee: 20,
 };
 
@@ -22,6 +23,7 @@ const RESEARCH = [
 let members = [];
 let githubStats = null;
 let labWork = { currentWork: [], projects: [] };
+let presentationData = { presentations: [] };
 
 const $ = (id) => document.getElementById(id);
 
@@ -67,7 +69,9 @@ const safe = (value = "") => String(value)
 
 function safeUrl(value = "") {
   try {
-    const url = new URL(String(value), window.location.href);
+    const raw = String(value).trim();
+    if (!raw) return "";
+    const url = new URL(raw, window.location.href);
     return ["http:", "https:"].includes(url.protocol) ? safe(url.href) : "";
   } catch {
     return "";
@@ -242,6 +246,82 @@ function resolveMember(ref) {
     normalizeMemberRef(member.name) === wanted ||
     normalizeMemberRef(member.github) === wanted
   ) || null;
+}
+
+function presentationSpeakerMarkup(member, fallbackName = "") {
+  const displayMember = member || {
+    name: fallbackName || "Add member name",
+    role: "Member not found",
+    photo: "",
+  };
+  const memberIndex = member ? members.indexOf(member) : -1;
+  const interactive = memberIndex >= 0;
+
+  return `<button class="presentation-speaker" type="button"${interactive ? ` data-member-index="${memberIndex}"` : " disabled"}>
+    ${imageMarkup(displayMember, "presentation-avatar")}
+    <span class="presentation-speaker-copy">
+      <strong>${safe(displayMember.name)}</strong>
+      <small>${safe(displayMember.role || "DINA LAB")}</small>
+    </span>
+    ${interactive ? `<i data-lucide="arrow-up-right" aria-hidden="true"></i>` : ""}
+  </button>`;
+}
+
+function presentationMeta(icon, label, value, fallback) {
+  return `<div class="presentation-meta-item">
+    <span class="presentation-meta-icon"><i data-lucide="${icon}"></i></span>
+    <span><small>${safe(label)}</small><strong>${safe(value || fallback)}</strong></span>
+  </div>`;
+}
+
+function renderPresentations() {
+  const list = $("presentationList");
+  if (!list) return;
+
+  const items = Array.isArray(presentationData.presentations) ? presentationData.presentations : [];
+  list.innerHTML = items.length ? items.map((item, index) => {
+    const member = resolveMember(item.member);
+    if (!member) {
+      console.warn(`[DINA] Presentation member "${item.member || ""}" was not found in data/members.json.`);
+    }
+
+    const href = safeUrl(item.link);
+    const focus = member?.focus || [];
+    return `<article class="presentation-card reveal" style="transition-delay:${Math.min(index * 60, 240)}ms">
+      <span class="presentation-card-number">${String(index + 1).padStart(2, "0")}</span>
+      <div class="presentation-card-body">
+        <div class="presentation-card-topline">
+          <span>LAB PRESENTATION</span>
+          <span>${safe(item.series || "NEXT WEEK")}</span>
+        </div>
+        <div class="presentation-card-grid">
+          ${presentationSpeakerMarkup(member, item.member)}
+          <div class="presentation-topic">
+            <small>PRESENTATION TITLE</small>
+            <h3>${safe(item.title || "Add the presentation title")}</h3>
+            ${focus.length ? `<div class="presentation-focus">${focus.slice(0, 3).map(tag => `<span>${safe(tag)}</span>`).join("")}</div>` : ""}
+          </div>
+          <div class="presentation-schedule">
+            ${presentationMeta("calendar-days", "Date", item.date, "Add date")}
+            ${presentationMeta("clock-3", "Time", item.time, "Add time")}
+            ${presentationMeta("map-pin", "Location", item.location, "DINA Lab / Online")}
+          </div>
+          <div class="presentation-action">
+            ${href
+              ? `<a href="${href}" target="_blank" rel="noreferrer">${safe(item.linkLabel || "Open presentation")}<i data-lucide="arrow-up-right"></i></a>`
+              : `<span class="presentation-link-pending"><i data-lucide="link-2"></i>Link coming soon</span>`}
+          </div>
+        </div>
+      </div>
+    </article>`;
+  }).join("") : `
+    <article class="empty-work-card presentation-empty reveal">
+      <i data-lucide="presentation"></i>
+      <div><strong>Add next week's presentations</strong><span>Edit <code>data/presentations.json</code>; member details and photos are matched automatically.</span></div>
+    </article>`;
+
+  bindMemberCards();
+  window.lucide?.createIcons();
 }
 
 function resolveTeam(memberRefs = []) {
@@ -428,8 +508,15 @@ async function loadData() {
     labWork = { currentWork: [], projects: [] };
   }
 
+  try { presentationData = await getJson(CONFIG.presentationsUrl); }
+  catch (e) {
+    console.error(e);
+    presentationData = { presentations: [] };
+  }
+
   renderPeople();
   renderStats(githubStats);
+  renderPresentations();
   renderWork();
   configureLinks(githubStats.organization);
   window.lucide?.createIcons();
