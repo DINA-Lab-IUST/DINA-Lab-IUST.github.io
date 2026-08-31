@@ -258,11 +258,11 @@ function presentationSpeakerMarkup(member, fallbackName = "") {
   const interactive = memberIndex >= 0;
 
   return `<button class="presentation-speaker" type="button"${interactive ? ` data-member-index="${memberIndex}"` : " disabled"}>
-    ${imageMarkup(displayMember, "presentation-avatar")}
     <span class="presentation-speaker-copy">
       <strong>${safe(displayMember.name)}</strong>
       <small>${safe(displayMember.role || "DINA LAB")}</small>
     </span>
+    ${imageMarkup(displayMember, "presentation-avatar")}
     ${interactive ? `<i data-lucide="arrow-up-right" aria-hidden="true"></i>` : ""}
   </button>`;
 }
@@ -272,6 +272,16 @@ function presentationMeta(icon, label, value, fallback) {
     <span class="presentation-meta-icon"><i data-lucide="${icon}"></i></span>
     <span><small>${safe(label)}</small><strong>${safe(value || fallback)}</strong></span>
   </div>`;
+}
+
+function googleMeetIconMarkup() {
+  return `<svg class="google-meet-icon" viewBox="0 0 32 32" aria-hidden="true">
+    <path fill="#00832D" d="M5.5 7h12A3.5 3.5 0 0 1 21 10.5v11a3.5 3.5 0 0 1-3.5 3.5h-12A3.5 3.5 0 0 1 2 21.5v-11A3.5 3.5 0 0 1 5.5 7Z"/>
+    <path fill="#00AC47" d="M11 7h6.5A3.5 3.5 0 0 1 21 10.5V16H11V7Z"/>
+    <path fill="#2684FC" d="M11 16h10v5.5a3.5 3.5 0 0 1-3.5 3.5H11v-9Z"/>
+    <path fill="#FFBA00" d="m21 12 7-4v8l-7 4v-8Z"/>
+    <path fill="#EA4335" d="m21 20 7-4v8l-7-4Z"/>
+  </svg>`;
 }
 
 function renderPresentations() {
@@ -286,7 +296,6 @@ function renderPresentations() {
     }
 
     const href = safeUrl(item.link);
-    const focus = member?.focus || [];
     return `<article class="presentation-card reveal" style="transition-delay:${Math.min(index * 60, 240)}ms">
       <span class="presentation-card-number">${String(index + 1).padStart(2, "0")}</span>
       <div class="presentation-card-body">
@@ -295,12 +304,11 @@ function renderPresentations() {
           <span>${safe(item.series || "NEXT WEEK")}</span>
         </div>
         <div class="presentation-card-grid">
-          ${presentationSpeakerMarkup(member, item.member)}
           <div class="presentation-topic">
             <small>PRESENTATION TITLE</small>
             <h3>${safe(item.title || "Add the presentation title")}</h3>
-            ${focus.length ? `<div class="presentation-focus">${focus.slice(0, 3).map(tag => `<span>${safe(tag)}</span>`).join("")}</div>` : ""}
           </div>
+          ${presentationSpeakerMarkup(member, item.member)}
           <div class="presentation-schedule">
             ${presentationMeta("calendar-days", "Date", item.date, "Add date")}
             ${presentationMeta("clock-3", "Time", item.time, "Add time")}
@@ -308,8 +316,8 @@ function renderPresentations() {
           </div>
           <div class="presentation-action">
             ${href
-              ? `<a href="${href}" target="_blank" rel="noreferrer">${safe(item.linkLabel || "Open presentation")}<i data-lucide="arrow-up-right"></i></a>`
-              : `<span class="presentation-link-pending"><i data-lucide="link-2"></i>Link coming soon</span>`}
+              ? `<a href="${href}" target="_blank" rel="noreferrer">${googleMeetIconMarkup()}<span>${safe(item.linkLabel || "Join on Meet")}</span></a>`
+              : `<span class="presentation-link-pending">${googleMeetIconMarkup()}<span>Meet link soon</span></span>`}
           </div>
         </div>
       </div>
