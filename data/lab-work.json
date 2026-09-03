@@ -9,38 +9,52 @@
     },
     {
       "title": "Adaptive Code Smell Refactoring",
-      "status": "Research",
+      "status": "In progress",
       "description": "We propose CARER...",
       "tags": ["LLM", "Software", "Refactoring"],
       "members": ["Ali Ahmadi", "Mobina Hoshiaripour", "Mobin Taherzadeh"]
     },
     {
       "title": "Fed + LoRA",
-      "status": "Research",
+      "status": "In progress",
       "description": "We propose...",
       "tags": ["FedLLM", "Federated Learning", "LLM"],
       "members": ["Ali Ahmadi", "Fatemeh Kerdegari"]
     },
     {
       "title": "Auto-Scaling",
-      "status": "Research",
+      "status": "In progress",
       "description": "We propose...",
       "tags": ["Auto-Scaling", "Kubernetes"],
       "members": ["Amirhossein Maleki"]
     },
     {
       "title": "Auto-Scaling",
-      "status": "Research",
+      "status": "In progress",
       "description": "We propose...",
       "tags": ["Auto-Scaling", "Kubernetes"],
       "members": ["Ali Ahmadi", "Mohammad hosein Pakdaman"]
     },
     {
       "title": "Adaptive Client Selection in FL",
-      "status": "Research",
+      "status": "In progress",
       "description": "We propose...",
       "tags": ["Federated Learning", "Clien Selection"],
       "members": ["Ali Ahmadi"]
+    },
+    {
+      "title": "Scheduling FaaS",
+      "status": "In progress",
+      "description": "We propose...",
+      "tags": ["Edge Computing", "Serverless", "Function as a Service"],
+      "members": ["Ahoora Amini"]
+    },
+    {
+      "title": "FaaS",
+      "status": "In progress",
+      "description": "We propose...",
+      "tags": ["Edge Computing", "Serverless", "Function as a Service"],
+      "members": ["Abolfazl Arshia"]
     }
   ],
   "projects": [
