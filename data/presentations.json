@@ -1,22 +1,22 @@
 {
   "presentations": [
     {
-      "member": "Mobin Taherzadeh",
-      "title": "A review of Large Language Model-Based Approaches for Software Smell Detection and Analysis",
-      "date": "Sat, 19 September",
+      "member": "Amirhossein Maleki",
+      "title": "Review and Classification of Proactive Auto-scaling Approaches Focusing on Stability and Computational Efficiency",
+      "date": "Sat, 26 September",
       "time": "09:00",
       "location": "DINA Lab / Online",
-      "link": "https://meet.google.com/swc-skck-tig",
+      "link": "https://meet.google.com/bkm-kchx-onr",
       "linkLabel": "Join presentation",
       "series": "NEXT WEEK"
     },
     {
-      "member": "Sina Moradian",
-      "title": "A Review of Automated Testing Approaches in Dynamic Level Difficulty Adjustment Systems Using Intelligent Agents",
-      "date": "Sat, 19 September",
+      "member": "Erfan Samimi",
+      "title": "A review of program repair approaches using LLMs",
+      "date": "Sat, 26 September",
       "time": "09:30",
       "location": "DINA Lab / Online",
-      "link": "https://meet.google.com/swc-skck-tig",
+      "link": "https://meet.google.com/bkm-kchx-onr",
       "linkLabel": "Join presentation",
       "series": "NEXT WEEK"
     }
