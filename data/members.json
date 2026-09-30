@@ -189,5 +189,17 @@
     "bio": "Add a short research bio here.",
     "degree": "bsc",
     "focus": ["LLM", "FedLLM", "Distributed Systems"]
+  },
+  {
+    "name": "Yekta Sharifpour",
+    "role": "Researcher",
+    "cardFooter": "Researcher",
+    "leadership": "member",
+    "github": "---",
+    "linkedin": "https://www.linkedin.com/in/yekta-sharifpour-6816a1390/",
+    "photo": "assets/Yekta-sharifpour.jpeg",
+    "bio": "Add a short research bio here.",
+    "degree": "bsc",
+    "focus": ["Software", "Game"]
   }
 ]
