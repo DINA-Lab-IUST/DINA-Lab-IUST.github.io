@@ -12,28 +12,21 @@
       "status": "In progress",
       "description": "We propose CARER...",
       "tags": ["LLM", "Software", "Refactoring"],
-      "members": ["Ali Ahmadi", "Mobina Hoshiaripour", "Mobin Taherzadeh"]
-    },
-    {
-      "title": "Fed + LoRA",
-      "status": "In progress",
-      "description": "We propose...",
-      "tags": ["FedLLM", "Federated Learning", "LLM"],
-      "members": ["Ali Ahmadi", "Fatemeh Kerdegari"]
+      "members": ["Ali Ahmadi", "Mobin Taherzadeh", "Mobina Hoshiaripour"]
     },
     {
       "title": "Auto-Scaling",
       "status": "In progress",
       "description": "We propose...",
       "tags": ["Auto-Scaling", "Kubernetes"],
-      "members": ["Amirhossein Maleki"]
+      "members": ["Amirhossein Maleki", "Ali Ahmadi"]
     },
     {
       "title": "Auto-Scaling",
       "status": "In progress",
       "description": "We propose...",
       "tags": ["Auto-Scaling", "Kubernetes"],
-      "members": ["Ali Ahmadi", "Mohammad hosein Pakdaman"]
+      "members": ["Ali Ahmadi", "Amirhossein Maleki","Mohammad hosein Pakdaman"]
     },
     {
       "title": "Adaptive Client Selection in FL",
@@ -47,14 +40,28 @@
       "status": "In progress",
       "description": "We propose...",
       "tags": ["Edge Computing", "Serverless", "Function as a Service"],
-      "members": ["Ahoora Amini"]
+      "members": ["Ahoora Amini", "Hessam Koucheki", "Ali Ahmadi"]
     },
     {
       "title": "FaaS",
       "status": "In progress",
       "description": "We propose...",
       "tags": ["Edge Computing", "Serverless", "Function as a Service"],
-      "members": ["Abolfazl Arshia"]
+      "members": ["Abolfazl Arshia", "Ali Ahmadi"]
+    },
+    {
+      "title": "Program Repair",
+      "status": "In progress",
+      "description": "We propose...",
+      "tags": ["LLM", "Software", "Repair"],
+      "members": ["Erfan Samimi", "Mobin Taherzadeh", "Ali Ahmadi"]
+    },
+    {
+      "title": "Dynamic Level Difficulty Adjustment",
+      "status": "In progress",
+      "description": "We propose...",
+      "tags": ["LLM", "Game"],
+      "members": ["Sina Moradian"]
     }
   ],
   "projects": [
