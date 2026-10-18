@@ -88,6 +88,20 @@ Add, remove or reorder objects inside `presentations`; the visible card numbers 
 
 DINA LAB includes an automated statistics workflow built with **GitHub Actions**.
 
+The workflow always requests fresh GitHub statistics before deploying after a push to `main`, on manual runs, and every two hours (`17 */2 * * *`, UTC). Restoring a cache never skips the refresh step. The page requests the published JSON on load and every two hours while it remains open; the existing browser fallback cache is retained. If an older fallback is deployed, the browser keeps its newer successful snapshot.
+
+Each run restores the last successful public snapshot with `actions/cache/restore` and saves the resulting fallback snapshot with `actions/cache/save`. If GitHub is still preparing statistics (`202`), some repositories fail, or the API is unavailable, the last complete snapshot is deployed instead of a partial/zero total. Its original `generatedAt` is preserved and `snapshot` becomes `last-known-good`.
+
+Set the repository variable `DINA_GITHUB_ORG` and secret `DINA_GITHUB_TOKEN` with access to the included organization repositories. Fine-grained tokens need **Metadata: read** for contributor statistics. No token is sent to the browser or written to the public JSON. A missing/expired token preserves existing statistics but cannot collect new ones; the Actions log reports the problem.
+
+Requests are sequential, paced at least 250 ms apart, and capped at 400 per run. The collector checks `x-ratelimit-remaining`, keeps a 25-request reserve, and stops immediately on rate-limit responses without further retries. A typical run uses one request per 100 repositories, one per configured GitHub profile, and one to five per included repository (because `202` responses may require polling).
+
+GitHub's normal personal access token allowance is 5,000 requests/hour, shared with other uses of that account. The built-in `GITHUB_TOKEN` normally has 1,000 requests/hour per repository and does not grant access to other private repositories. Reference: [REST API rate limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api).
+
+GitHub's own contributor-statistics cache is rebuilt after pushes to a repository's default branch and cannot be forcibly bypassed by this site. Scheduled Actions can also run late during busy periods and public-repository schedules can be disabled after 60 days without repository activity. Reference: [repository statistics](https://docs.github.com/en/rest/metrics/statistics) and [scheduled workflow events](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+
+Run the offline collector and browser-cache checks with `node --test scripts/update-github-stats.test.mjs`. These use simulated API responses and never send real GitHub requests.
+
 It can surface aggregate information such as:
 
 - total repository count

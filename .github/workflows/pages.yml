@@ -5,8 +5,8 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # Every 6 hours, away from the top of the hour.
-    - cron: "17 */6 * * *"
+    # Every 2 hours (UTC), away from the top of the hour.
+    - cron: "17 */2 * * *"
 
 permissions:
   contents: read
@@ -33,6 +33,16 @@ jobs:
           node-version: 24
           package-manager-cache: false
 
+      # This is a fallback snapshot, not a reason to skip the API request.
+      - name: Restore last successful stats
+        uses: actions/cache/restore@v5
+        continue-on-error: true
+        with:
+          path: data/github-stats.json
+          key: dina-stats-v1-${{ vars.DINA_GITHUB_ORG }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            dina-stats-v1-${{ vars.DINA_GITHUB_ORG }}-
+
       - name: Refresh organization stats
         env:
           GITHUB_ORG: ${{ vars.DINA_GITHUB_ORG }}
@@ -41,6 +51,13 @@ jobs:
           # Optional: comma-separated repositories to omit from lab metrics.
           EXCLUDE_REPOS: ${{ vars.DINA_EXCLUDE_REPOS }}
         run: node scripts/update-github-stats.mjs
+
+      - name: Save last successful stats for the next deployment
+        uses: actions/cache/save@v5
+        continue-on-error: true
+        with:
+          path: data/github-stats.json
+          key: dina-stats-v1-${{ vars.DINA_GITHUB_ORG }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

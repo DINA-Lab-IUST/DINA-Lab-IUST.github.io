@@ -3,6 +3,7 @@ const CONFIG = {
   // Keep this as a fallback only, or replace it with your GitHub organization slug.
   githubOrg: "YOUR_GITHUB_ORG",
   statsUrl: "data/github-stats.json",
+  statsRefreshMs: 2 * 60 * 60 * 1000,
   membersUrl: "data/members.json",
   workUrl: "data/lab-work.json",
   presentationsUrl: "data/presentations.json",
@@ -486,6 +487,10 @@ async function loadGithubStats() {
   try {
     const fresh = await getJson(CONFIG.statsUrl);
     if (statsAreUseful(fresh)) {
+      // A fallback deployment must not replace a newer successful browser snapshot.
+      if (cached && (Date.parse(cached.generatedAt) || 0) > (Date.parse(fresh.generatedAt) || 0)) {
+        return { ...cached, snapshot: "last-known-good" };
+      }
       cacheStats(fresh);
       return fresh;
     }
@@ -502,6 +507,15 @@ async function loadGithubStats() {
     }
     return { organization: "", repoCount: 0, totalCommits: 0, activeContributors: [], repositories: [], profiles: {}, windowDays: 90 };
   }
+}
+
+function setupStatsRefresh() {
+  // The browser only reads the public snapshot; private API requests stay in Actions.
+  window.setInterval(async () => {
+    githubStats = await loadGithubStats();
+    renderStats(githubStats);
+    configureLinks(githubStats.organization);
+  }, CONFIG.statsRefreshMs);
 }
 
 async function loadData() {
@@ -574,6 +588,7 @@ window.addEventListener("DOMContentLoaded", () => {
   removeLegacyPhotoOverlays();
   activateReveal();
   loadData().finally(() => {
+    setupStatsRefresh();
     removeLegacyPhotoOverlays();
     requestAnimationFrame(removeLegacyPhotoOverlays);
   });
