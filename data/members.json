@@ -35,16 +35,16 @@
     "focus": ["LLM", "Federated Learning", "FedLLM", "Software", "Distributed Systems", "Edge Computing"]
   },
   {
-    "name": "Sheyda Niknafs",
+    "name": "Amirhossein Maleki",
     "role": "Researcher",
     "cardFooter": "Researcher",
     "leadership": "member",
-    "github": "Sheyda-nkfs",
-    "linkedin": "https://www.linkedin.com/in/sheyda-niknafs/",
-    "photo": "assets/SheydaNiknafs.png",
+    "github": "AHM-ID",
+    "linkedin": "https://www.linkedin.com/in/ahm-id/",
+    "photo": "assets/Amirhossein-Maleki.jpg",
     "bio": "Add a short research bio here.",
     "degree": "msc",
-    "focus": ["Edge Computing", "Distributed Systems"]
+    "focus": ["Edge Computing", "Software", "Cloud", "Distributed Systems"]
   },
   {
     "name": "Ahoora Amini",
@@ -71,6 +71,18 @@
     "focus": ["Edge Computing", "FaaS", "Serverless"]
   },
   {
+    "name": "Mobin Taherzadeh",
+    "role": "Researcher",
+    "cardFooter": "Researcher",
+    "leadership": "member",
+    "github": "Mobin-Thz",
+    "linkedin": "https://www.linkedin.com/in/mobin-taherzadeh-a7ba801bb/",
+    "photo": "assets/Mobin-Thz.png",
+    "bio": "Add a short research bio here.",
+    "degree": "msc",
+    "focus": ["Software", "LLM"]
+  },
+  {
     "name": "Amirhossein Amin Moghaddam",
     "role": "Researcher",
     "cardFooter": "Researcher",
@@ -83,13 +95,25 @@
     "focus": ["LLM", "Edge Computing", "Distributed Systems"]
   },
   {
-    "name": "Mobin Taherzadeh",
+    "name": "Sheyda Niknafs",
     "role": "Researcher",
     "cardFooter": "Researcher",
     "leadership": "member",
-    "github": "Mobin-Thz",
-    "linkedin": "https://www.linkedin.com/in/mobin-taherzadeh-a7ba801bb/",
-    "photo": "assets/Mobin-Thz.png",
+    "github": "Sheyda-nkfs",
+    "linkedin": "https://www.linkedin.com/in/sheyda-niknafs/",
+    "photo": "assets/SheydaNiknafs.png",
+    "bio": "Add a short research bio here.",
+    "degree": "msc",
+    "focus": ["Edge Computing", "Distributed Systems"]
+  },
+  {
+    "name": "Alimahdi Bahrami",
+    "role": "Researcher",
+    "cardFooter": "Researcher",
+    "leadership": "member",
+    "github": "alimahdibahrami",
+    "linkedin": "https://www.linkedin.com/in/alimahdibahrami/",
+    "photo": "assets/AlimahdiBahrami.png",
     "bio": "Add a short research bio here.",
     "degree": "msc",
     "focus": ["Software", "LLM"]
@@ -105,30 +129,6 @@
     "bio": "Add a short research bio here.",
     "degree": "phd",
     "focus": ["Edge Computing", "LLM"]
-  },
-  {
-    "name": "Alimahdi Bahrami",
-    "role": "Researcher",
-    "cardFooter": "Researcher",
-    "leadership": "member",
-    "github": "alimahdibahrami",
-    "linkedin": "https://www.linkedin.com/in/alimahdibahrami/",
-    "photo": "assets/AlimahdiBahrami.png",
-    "bio": "Add a short research bio here.",
-    "degree": "msc",
-    "focus": ["Software", "LLM"]
-  },
-  {
-    "name": "Amirhossein Maleki",
-    "role": "Researcher",
-    "cardFooter": "Researcher",
-    "leadership": "member",
-    "github": "AHM-ID",
-    "linkedin": "https://www.linkedin.com/in/ahm-id/",
-    "photo": "assets/Amirhossein-Maleki.jpg",
-    "bio": "Add a short research bio here.",
-    "degree": "msc",
-    "focus": ["Edge Computing", "Software", "Cloud", "Distributed Systems"]
   },
   {
     "name": "Sina Moradian",
