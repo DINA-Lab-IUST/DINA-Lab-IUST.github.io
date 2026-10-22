@@ -1,22 +1,22 @@
 {
   "presentations": [
     {
-      "member": "Erfan Samimi",
-      "title": "A review of program repair approaches using LLMs",
-      "date": "Sat, 17 October",
+      "member": "Mobin Taherzadeh",
+      "title": "A review of Large Language Model-Based Approaches for Software Smell Detection and Analysis",
+      "date": "Sat, 24 October",
       "time": "09:00",
       "location": "DINA Lab / Online",
-      "link": "https://meet.google.com/wvc-wskr-yzq",
+      "link": "https://meet.google.com/bwh-tbpa-aby",
       "linkLabel": "Join presentation",
       "series": "NEXT WEEK"
     },
     {
-      "member": "Alimahdi Bahrami",
-      "title": "A Review and Classification of Intelligent Self-Healing Approaches in Edge Computing",
-      "date": "Sat, 17 October",
+      "member": "Sina Moradian",
+      "title": "A Review of Automated Testing Approaches in Dynamic Level Difficulty Adjustment Systems Using Intelligent Agents",
+      "date": "Sat, 24 October",
       "time": "09:30",
       "location": "DINA Lab / Online",
-      "link": "https://meet.google.com/wvc-wskr-yzq",
+      "link": "https://meet.google.com/bwh-tbpa-aby",
       "linkLabel": "Join presentation",
       "series": "NEXT WEEK"
     }
